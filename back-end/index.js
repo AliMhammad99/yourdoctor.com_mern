@@ -1,6 +1,8 @@
-import dotenv from "dotenv";
 const mongoose = require("mongoose");
-const user = require("./models/user");
+const dotenv = require("dotenv").config();
+const basicUser = require("./models/basicUser");
+const account = require("./models/account");
+const notification = require("./models/notification");
 
 mongoose
   .connect(process.env.YOUR_DOCTOR_DB_URI, {
@@ -11,16 +13,66 @@ mongoose
     process.exit(1);
   });
 
-user.create(
-  {
-    name: "Marwan",
-    age: 22,
-  }
-  // ,
-  // (error, user) => {
-  //   console.log(error, user);
-  // }
-);
+// basicUser.create(
+//   {
+//     first_name: "Marwan",
+//     last_name: "Mcheik",
+//     gender: "male",
+//     date_of_birth: "2020-09-01",
+//     phone_number: 71223456,
+//     profile_picture: "person.jpg",
+//     user_type: "patient",
+//   }
+//   // ,
+//   // (error, user) => {
+//   //   console.log(error, user);
+//   // }
+// );
+
+// account.create(
+//   {
+//     email: "ali@gmail.com",
+//     username: "alimhmd",
+//     password_salt: "grrhtnggrnrreww",
+//     password_hash: "fbfnhtgrteereed",
+//     balance: 30,
+//     is_activated: true,
+//     user_id: mongoose.Types.ObjectId("6256cae0f6d570985782ae3f"),
+//   }
+//   // ,
+//   // (error, user) => {
+//   //   console.log(error, user);
+//   // }
+// );
+// var account = new account({
+//   email: "a@gmail.com",
+//   username: "rrr",
+//   password_salt: "grrhtnggrnrreww",
+//   password_hash: "fbfnhtgrteereed",
+//   balance: 30,
+//   is_activated: true,
+//   user_id: mongoose.Types.ObjectId("6256cae0f6d570985782ae3f"),
+//   notifications : [{
+
+//   }]
+// });
+// account.save();
+// console.log(account.balance);
+
+// notification.create(
+//   {
+
+//     title: "notification 1",
+//     description: "notification description",
+//     importance: "medium", //low medium high urgent
+//     cleared: false,
+//     is_viewed: true,
+//   }
+// ,
+// (error, user) => {
+//   console.log(error, user);
+// }
+// );
 
 //find the raws where the name fields contain a
 // user.find(
