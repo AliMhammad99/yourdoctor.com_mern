@@ -1,8 +1,9 @@
+import dotenv from "dotenv";
 const mongoose = require("mongoose");
 const user = require("./models/user");
 
 mongoose
-  .connect("mongodb://localhost/your_doctor_database", {
+  .connect(process.env.YOUR_DOCTOR_DB_URI, {
     useNewUrlParser: true,
   })
   .catch((err) => {
