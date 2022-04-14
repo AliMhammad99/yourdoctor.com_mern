@@ -1,4 +1,4 @@
-import { ReactComponent as LoadingIcon } from "../../assets/loading_icon.svg";
+import { ReactComponent as LoadingIcon } from "../../assets/logo_icon_only.svg";
 import "./Loading.scss";
 function Loading() {
   return (
