@@ -1,17 +1,32 @@
 import { ReactComponent as LoadingIcon } from "../../assets/logo_icon_only.svg";
-import { useRef,useEffect } from "react";
+import { useRef, useEffect } from "react";
 import "./Loading.scss";
-const loadingComplete=()=>{
-  loadingSection.current.classList.add("loading-completed")
-}
+
+//When loading screen is needed use this component
 function Loading() {
+  //Reference to the #loading section to access it later
   const loadingSection = useRef();
+  //Function to call on loading complete
+  const loadingComplete = () => {
+    //Hide #loading section using a css class
+    loadingSection.current.classList.add("loading-completed");
+    //Calculate the time of fade out
+    var fadeOutTime =
+      1000 *
+      parseInt(
+        getComputedStyle(document.body).getPropertyValue(
+          "--loading-fadeout-duration"
+        )
+      );
+    //After fade out is ended, display:none the #loading section
+    setTimeout(() => {
+      loadingSection.current.style.display = "none";
+      document.getElementsByTagName("body")[0].style.overflow = "auto";
+    }, fadeOutTime);
+  };
   useEffect(() => {
-    //Runs only on the first render
-    //1.get Loading section
-    //2.On Document load => 1. add loading-completed class 2.fadeout 3.body overflow to auto
-    // console.log(loadingSection.current);
-    window.addEventListener('load', loadingComplete);
+    //This useEffect will be called once and on first render only
+    window.addEventListener("load", loadingComplete);
   }, []);
   return (
     <section id="loading" ref={loadingSection}>
