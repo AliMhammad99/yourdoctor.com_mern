@@ -1,0 +1,146 @@
+/*This file contains all global styles like fonts, color theme, font sizes...*/
+/*This file should be imported on any page*/
+
+/* !!!! All CSS files should use the fonts and CSS variables 
+declared in this file !!!!*/
+
+/*Our font family*/
+@font-face {
+  /*Regular version, will be used the most*/
+  font-family: our-font;
+  src: url(/fonts/Lato-Bold.ttf);
+}
+
+@font-face {
+  /*Thin version, used when needed*/
+  font-family: our-font-thin;
+  src: url(/fonts/Lato-Thin.ttf);
+}
+
+@font-face {
+  /*Bold version, used when needed*/
+  font-family: our-font-bold;
+  src: url(/fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+  /*Very bold version, used when needed*/
+  font-family: our-font-black;
+  src: url(/fonts/Lato-Black.ttf);
+}
+
+/*CSS Variables for easy maintenance and consistent style*/
+:root {
+  /*used for important text*/
+  --dark-gray: #333333;
+
+  /*used for low importance text*/
+  --light-gray: #485259;
+
+  /* --very-light-gray: #DCDCDC; might be used later*/
+  /* --very-dark-blue: #1E6D67;  might be used later*/
+
+  /*main color*/
+  --light-blue: #4fb2cc;
+
+  /*secondary color*/
+  --dark-blue: #007b81;
+  /* --very-light-blue: #ABE8FE;  might be used later*/
+
+  /*for error messages and attention grabbing*/
+  --orange: #ff7b20;
+
+  /*loading animation each cycle duration, the loading time depends on internet speed*/
+  --loading-animation-duration: 3s;
+
+  /*time for loading screen to fade out*/
+  --loading-fadeout-duration: 2s;
+
+  /*margin of all the page*/
+  --left-right-padding: 1em;
+
+  /*used on buttons, placeholders and body text*/
+  --font-size-small: 1.2rem;
+
+  /*use when a medium text size is needed*/
+  --font-size-medium: 2rem;
+
+  /*used on big titles when contrast is needed*/
+  --font-size-large: 2.4rem;
+
+  /*used on hover effects (transition time)*/
+  --hover-transition-time: 0.2s;
+}
+
+/*initialization*/
+* {
+  /*all elements' margins and paddings are set to 0*/
+  /*we will set margins and paddings for each element 
+      separately like we want*/
+  margin: 0;
+  padding: 0;
+
+  /*default font style*/
+  font-family: our-font;
+  font-size: var(--font-size-small);
+  color: var(--dark-gray);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+button {
+  border: none;
+  background-color: transparent;
+}
+body {
+  overflow: hidden;
+}
+
+/*Our buttons sylte*/
+.our-button {
+  background-color: var(--light-blue);
+  /* height: 2em; */
+  padding: 0.7em;
+  cursor: pointer;
+  transition: background-color var(--hover-transition-time);
+}
+.our-button:hover {
+  background-color: var(--dark-blue);
+}
+/*Desktop styles*/
+@media all and (min-width: 820px) {
+  /*CSS Variables for easy maintenance and consistent style*/
+  :root {
+    /*margin of all the page*/
+    --left-right-padding: 10rem;
+
+    /*used on buttons, placeholders and body text*/
+    --font-size-small: 1.1rem;
+
+    /*use when a medium text size is needed*/
+    --font-size-medium: 1.5rem;
+
+    /*used on big titles when contrast is needed*/
+    --font-size-large: 3rem;
+  }
+
+  /*our custom scrollbar*/
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue);
+    border-radius: 10em;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--dark-blue);
+  }
+  ::-webkit-scrollbar-track {
+    background-color: white;
+  }
+}
