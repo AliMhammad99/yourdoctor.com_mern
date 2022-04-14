@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
-const basicUser = require("./models/basicUser");
+const basicUser = require("./models/basic_user");
 const account = require("./models/account");
 const notification = require("./models/notification");
 
