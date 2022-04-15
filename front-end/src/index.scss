@@ -8,7 +8,7 @@ declared in this file !!!!*/
 @font-face {
   /*Regular version, will be used the most*/
   font-family: our-font;
-  src: url(/fonts/Lato-Bold.ttf);
+  src: url(/fonts/Lato-Regular.ttf);
 }
 
 @font-face {
@@ -20,7 +20,7 @@ declared in this file !!!!*/
 @font-face {
   /*Bold version, used when needed*/
   font-family: our-font-bold;
-  src: url(/fonts/Lato-Regular.ttf);
+  src: url(/fonts/Lato-Bold.ttf);
 }
 
 @font-face {
@@ -70,6 +70,10 @@ declared in this file !!!!*/
 
   /*used on hover effects (transition time)*/
   --hover-transition-time: 0.2s;
+
+  //use for buttons, text fields and all ui elements
+  --border-radius-full-rouded: 1000px;
+  --border-radius-round-corners: 10px;
 }
 
 /*initialization*/
@@ -105,23 +109,12 @@ body {
   padding: 0 var(--left-right-padding);
 }
 
-/*Our buttons sylte*/
-.our-button {
-  background-color: var(--light-blue);
-  /* height: 2em; */
-  padding: 0.7em;
-  cursor: pointer;
-  transition: background-color var(--hover-transition-time);
-}
-.our-button:hover {
-  background-color: var(--dark-blue);
-}
 /*Desktop styles*/
 @media all and (min-width: 820px) {
   /*CSS Variables for easy maintenance and consistent style*/
   :root {
     /*margin of all the page*/
-    --left-right-padding: 10vw;
+    --left-right-padding: 14vw;
 
     /*used on buttons, placeholders and body text*/
     --font-size-small: 1.1rem;
