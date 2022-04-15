@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactComponent as LoadingIcon } from "../../assets/logo_icon_only.svg";
 import { useRef, useEffect } from "react";
 import "./Loading.scss";

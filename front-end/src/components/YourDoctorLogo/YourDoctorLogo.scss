@@ -1,9 +1,19 @@
+//Mobile Styles (Mobile first)
 .logo {
-  background-color: green;
-  width: 11em;
-  margin-left: 1em;
+  width: 7em;
+  cursor: pointer;
+  svg {
+    transition: filter var(--hover-transition-time);
+  }
+  &:hover {
+    svg {
+      filter: brightness(75%);
+    }
+  }
 }
-
-.logo > svg {
-  width: 20%;
+//Desktop Styles
+@media all and (min-width: 820px) {
+  .logo {
+    width: 10em;
+  }
 }

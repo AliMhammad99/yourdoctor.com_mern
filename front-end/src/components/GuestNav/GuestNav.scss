@@ -1,0 +1,24 @@
+//Mobile Styles
+.header {
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .nav-bar {
+    ul {
+      width: 10em;
+      justify-content: space-between;
+      display: flex;
+    }
+  }
+}
+//Desktop Styles
+@media all and (min-width: 820px) {
+  .header {
+    .nav-bar {
+      ul {
+        width: 13em;
+      }
+    }
+  }
+}

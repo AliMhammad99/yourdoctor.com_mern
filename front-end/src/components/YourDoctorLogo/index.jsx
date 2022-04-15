@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactComponent as LogoSVG } from "../../assets/logo_complete.svg";
 import "./YourDoctorLogo.scss";
 
