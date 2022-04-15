@@ -57,10 +57,10 @@ declared in this file !!!!*/
   --loading-fadeout-duration: 2s;
 
   /*margin of all the page*/
-  --left-right-padding: 1em;
+  --left-right-padding: 5vw;
 
   /*used on buttons, placeholders and body text*/
-  --font-size-small: 1.2rem;
+  --font-size-small: 1rem;
 
   /*use when a medium text size is needed*/
   --font-size-medium: 2rem;
@@ -82,7 +82,6 @@ declared in this file !!!!*/
 
   /*default font style*/
   font-family: our-font;
-  font-size: var(--font-size-small);
   color: var(--dark-gray);
 }
 
@@ -96,9 +95,14 @@ ul {
 button {
   border: none;
   background-color: transparent;
+  &:focus {
+    outline: none;
+  }
 }
 body {
   overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 var(--left-right-padding);
 }
 
 /*Our buttons sylte*/
@@ -117,7 +121,7 @@ body {
   /*CSS Variables for easy maintenance and consistent style*/
   :root {
     /*margin of all the page*/
-    --left-right-padding: 10rem;
+    --left-right-padding: 10vw;
 
     /*used on buttons, placeholders and body text*/
     --font-size-small: 1.1rem;

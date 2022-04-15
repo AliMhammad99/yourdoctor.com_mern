@@ -1,23 +1,24 @@
+import React from "react";
 import YourDoctorLogo from "../YourDoctorLogo";
+import NavButton from "../NavButton";
+import "./GuestNav.scss";
+//The nav to be displayed for guests
 function GuestNav() {
+  //Buttons can be changed here (edit, add, or remove)
+  const navButtonsNames = ["Search", "Login", "Signup"];
+
   return (
     <header className="header">
       <YourDoctorLogo />
       <nav className="nav-bar">
         <ul>
-          <li>
-            <button className="nav-btn">Search</button>
-          </li>
-          <li>
-            <button className="nav-btn" id="login_btn">
-              Login
-            </button>
-          </li>
-          <li>
-            <button className="nav-btn" id="signup_btn">
-              Signup
-            </button>
-          </li>
+          {navButtonsNames.map((name, index) => {
+            return (
+              <li key={index}>
+                <NavButton buttonName={name} />
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

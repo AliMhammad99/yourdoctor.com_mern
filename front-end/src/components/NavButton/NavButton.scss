@@ -1,0 +1,9 @@
+//Mobile and Desktop Styles
+.nav-btn {
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: color var(--hover-transition-time);
+  &:hover {
+    color: var(--light-blue);
+  }
+}
