@@ -1,13 +1,14 @@
 /*Our buttons sylte*/
 .our-button {
   font-family: our-font-black;
+  font-size: var(--font-size-small);
   color: white;
   background-color: var(--light-blue);
   padding: 0.7em 2em;
   border-radius: var(--border-radius-full-rouded);
   cursor: pointer;
   transition: background-color var(--hover-transition-time);
-}
-.our-button:hover {
-  background-color: var(--dark-blue);
+  &:hover {
+    background-color: var(--dark-blue);
+  }
 }
