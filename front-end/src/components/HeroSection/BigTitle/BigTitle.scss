@@ -1,0 +1,23 @@
+.big-title {
+  font-size: var(--font-size-large);
+  font-family: our-font-black;
+  &::after {
+    content: "";
+    display: block;
+    background-color: var(--light-blue);
+    width: 4em;
+    height: 0.4em;
+    border-radius: var(--border-radius-full-rouded);
+    margin: 0.5em 0;
+  }
+}
+@media all and (min-width: 820px) {
+  .big-title {
+    width: 12em;
+    margin: auto;
+    &::after {
+      width: 7em;
+      margin: 0.5em auto;
+    }
+  }
+}
