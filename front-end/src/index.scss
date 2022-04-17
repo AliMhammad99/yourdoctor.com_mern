@@ -63,10 +63,10 @@ declared in this file !!!!*/
   --font-size-small: 1rem;
 
   /*use when a medium text size is needed*/
-  --font-size-medium: 2rem;
+  --font-size-medium: 1.7rem;
 
   /*used on big titles when contrast is needed*/
-  --font-size-large: 2.4rem;
+  --font-size-large: 2.7rem;
 
   /*used on hover effects (transition time)*/
   --hover-transition-time: 0.2s;
@@ -123,7 +123,7 @@ body {
     --font-size-medium: 1.5rem;
 
     /*used on big titles when contrast is needed*/
-    --font-size-large: 3rem;
+    --font-size-large: 3.5rem;
   }
 
   /*our custom scrollbar*/

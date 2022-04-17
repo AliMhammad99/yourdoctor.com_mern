@@ -1,5 +1,6 @@
 import Loading from "./components/Loading";
 import GuestNav from "./components/GuestNav";
+import HeroSection from "./components/HeroSection";
 import Button from "./components/Button";
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
@@ -15,6 +16,9 @@ function App() {
     <>
       <Loading />
       <GuestNav />
+      <main>
+        <HeroSection />
+      </main>
       <Button buttonName="Button" />
     </>
   );
