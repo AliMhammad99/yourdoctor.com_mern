@@ -1,0 +1,19 @@
+.drop-down-box {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: var(--border-radius-full-rouded);
+  //   background-color: red;
+  svg {
+    fill: var(--dark-gray);
+    width: 2em;
+    aspect-ratio: 1;
+    // background-color: pink;
+  }
+  .drop-down-input {
+    border: none;
+    padding-left: 1em;
+    font-size: var(--font-size-medium);
+  }
+}

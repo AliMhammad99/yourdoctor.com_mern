@@ -1,6 +1,6 @@
 import React from "react";
 import YourDoctorLogo from "../YourDoctorLogo";
-import NavButton from "../NavButton";
+import GuestNavButton from "../GuestNavButton";
 import "./GuestNav.scss";
 //The nav to be displayed for guests
 function GuestNav() {
@@ -15,7 +15,7 @@ function GuestNav() {
           {navButtonsNames.map((name, index) => {
             return (
               <li key={index}>
-                <NavButton buttonName={name} />
+                <GuestNavButton buttonName={name} />
               </li>
             );
           })}
