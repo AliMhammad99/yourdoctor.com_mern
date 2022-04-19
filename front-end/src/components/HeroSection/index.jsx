@@ -9,7 +9,7 @@ function HeroSection() {
     <section className="hero-section">
       <BigTitle title="Book your next healthcare appointment" />
       <SmallTitle title="Find, Book, and Add your favorite practitioners to your care team" />
-      <SearchForm searchHint="Search for specialty or doctor name" />
+      <SearchForm />
     </section>
   );
 }
