@@ -1,19 +1,36 @@
 .drop-down-box {
   display: flex;
   width: 100%;
-  justify-content: center;
-  border: 2px solid black;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  // border: thin solid var(--light-gray);
   border-radius: var(--border-radius-full-rouded);
-  //   background-color: red;
+  // background-color: red;
+  box-shadow: 0 0 6px 0 var(--light-gray);
+  padding: 2.5% 5%;
+  transition: var(--hover-transition-time) box-shadow;
   svg {
     fill: var(--dark-gray);
-    width: 2em;
+    width: 8%;
     aspect-ratio: 1;
     // background-color: pink;
+    margin-right: 2%;
+    transition: var(--hover-transition-time) fill;
   }
   .drop-down-input {
     border: none;
-    padding-left: 1em;
+    width: 85%;
+    // padding-left: 1em;
     font-size: var(--font-size-medium);
+    // background-color: greenyellow;
+    &:focus {
+      outline: none;
+    }
+  }
+  &.focused {
+    box-shadow: 0 0 6px 0 var(--light-blue);
+    svg {
+      fill: var(--light-blue);
+    }
   }
 }

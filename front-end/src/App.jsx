@@ -2,7 +2,7 @@ import Loading from "./components/Loading";
 import GuestNav from "./components/GuestNav";
 import HeroSection from "./components/HeroSection";
 import Button from "./components/Button";
-import DropDownMenu from "./components/SearchForm/DropDownMenu";
+
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
 Code splitting: https://reactjs.org/docs/code-splitting.html
@@ -15,14 +15,11 @@ React.memo https://dmitripavlutin.com/use-react-memo-wisely/
 function App() {
   return (
     <>
-      {/* <Loading />
+      <Loading />
       <GuestNav />
       <main>
-         HeroSection contains the welcome titles and the search form 
         <HeroSection />
       </main>
-      <Button buttonName="Button" /> */}
-      <DropDownMenu />
     </>
   );
 }
