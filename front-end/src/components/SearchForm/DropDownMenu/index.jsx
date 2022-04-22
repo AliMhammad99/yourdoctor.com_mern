@@ -10,44 +10,57 @@ function DropDownMenu({ svgIcon, hint, id }) {
   const dropDownBoxRef = useRef();
 
   //Effects
-  // useEffect(() => {
-  //   /*Called whenever setFocused is called*/
-  //   dropDownBoxRef.current.querySelector(".drop-down-input").focus();
-  // }, [focused]);
-  // useEffect(() => {
-  //   function handleClickOutside(event) {
-  //     if (
-  //       dropDownBoxRef.current &&
-  //       !dropDownBoxRef.current.contains(event.target)
-  //     ) {
-  //       setFocused(false);
-  //     }
-  //   }
-  //   // Bind the event listener
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     // Unbind the event listener on clean up
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [dropDownBoxRef]);
-  //Functions
-  // const requestFocus = () => {
-  //   // dropDownBoxRef.current.setFocused(true);
-  //   setFocused(true);
-  // };
-  //Functions
-  const requestFocus = () => {};
+  useEffect(() => {
+    /*Called whenever setFocused is called*/
+    if (focused) {
+      focusDropDownInput();
+    } else {
+      unfocusDropDownInput();
+    }
+  }, [focused]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        dropDownBoxRef.current &&
+        !dropDownBoxRef.current.contains(event.target)
+      ) {
+        setFocused(false);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropDownBoxRef]);
+
+  // Functions;
+  const handleFocus = () => {
+    // dropDownBoxRef.current.setFocused(true);
+    setFocused(true);
+    focusDropDownInput();
+  };
+  const focusDropDownInput = ()=>{
+    dropDownBoxRef.current.querySelector(".drop-down-input").focus();
+  }
+  const unfocusDropDownInput = () =>{
+    dropDownBoxRef.current.querySelector(".drop-down-input").blur();
+  }
   return (
     <div
-      onClick={() => {
-        setFocused(true);
-      }}
+      onClick={handleFocus}
       className={`drop-down-box ${focused ? "focused" : ""}`}
       id={id}
       ref={dropDownBoxRef}
     >
       {svgIcon}
-      <input type="text" placeholder={hint} className="drop-down-input" />
+      <input
+        type="text"
+        placeholder={hint}
+        className="drop-down-input"
+      />
     </div>
   );
 }

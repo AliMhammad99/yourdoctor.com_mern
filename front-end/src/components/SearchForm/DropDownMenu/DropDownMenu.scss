@@ -3,9 +3,7 @@
   width: 100%;
   box-sizing: border-box;
   justify-content: flex-start;
-  // border: thin solid var(--light-gray);
-  border-radius: var(--border-radius-full-rouded);
-  // background-color: red;
+  border-radius: var(--border-radius-full-rounded);
   box-shadow: 0 0 6px 0 var(--light-gray);
   padding: 2.5% 5%;
   transition: var(--hover-transition-time) box-shadow;
@@ -13,16 +11,14 @@
     fill: var(--dark-gray);
     width: 8%;
     aspect-ratio: 1;
-    // background-color: pink;
     margin-right: 2%;
     transition: var(--hover-transition-time) fill;
   }
   .drop-down-input {
     border: none;
     width: 85%;
-    // padding-left: 1em;
     font-size: var(--font-size-medium);
-    // background-color: greenyellow;
+    background-color: transparent;
     &:focus {
       outline: none;
     }
@@ -31,6 +27,26 @@
     box-shadow: 0 0 6px 0 var(--light-blue);
     svg {
       fill: var(--light-blue);
+    }
+  }
+}
+
+@media all and (min-width: 820px) {
+  .drop-down-box {
+    width: auto;
+    cursor:pointer;
+    padding: 2% 2%;
+    svg {
+      width: 2em;
+    }
+    .drop-down-input {
+      font-size: var(--font-size-small);
+    }
+    &:hover{
+      box-shadow: 0 0 6px 0 var(--light-blue);
+      svg {
+        fill: var(--light-blue);
+      }
     }
   }
 }
