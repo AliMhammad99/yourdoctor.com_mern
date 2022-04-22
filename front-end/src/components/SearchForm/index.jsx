@@ -7,11 +7,11 @@ import { ReactComponent as DoctorIcon } from "../../assets/icon_doctor.svg";
 import "./SearchForm.scss";
 function SearchForm() {
   return (
-    // <form id="search-form">
+    <form id="search-form">
     <DropDownMenu svgIcon={<SpecialtyIcon />} hint={"Specialty"} />
-    // <DropDownMenu svgIcon={<DoctorIcon />} hint={"Doctor Name (optional"} />
-    // <IconButton svgIcon={<SearchIcon />} id="search-button" />
-    // </form>
+    <DropDownMenu svgIcon={<DoctorIcon />} hint={"Doctor Name (optional)"} />
+    <IconButton svgIcon={<SearchIcon />} id="search-button" />
+    </form>
   );
 }
 export default SearchForm;
