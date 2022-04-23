@@ -3,6 +3,10 @@ import GuestNav from "./components/GuestNav";
 import HeroSection from "./components/HeroSection";
 import Button from "./components/Button";
 
+//import BackDiv from "./components/SignUp/BackDiv";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
 Code splitting: https://reactjs.org/docs/code-splitting.html
@@ -17,9 +21,9 @@ function App() {
     <>
       <Loading />
       <GuestNav />
-      <main>
-        <HeroSection />
-      </main>
+      <Button buttonName="Button" />
+      <SignUp />
+      <SignIn />
     </>
   );
 }

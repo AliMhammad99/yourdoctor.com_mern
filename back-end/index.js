@@ -3,7 +3,18 @@ const dotenv = require("dotenv").config();
 const basicUser = require("./models/basic_user");
 const account = require("./models/account");
 const notification = require("./models/notification");
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
 mongoose
   .connect(process.env.YOUR_DOCTOR_DB_URI, {
     useNewUrlParser: true,
@@ -12,6 +23,20 @@ mongoose
     console.error(err.stack);
     process.exit(1);
   });
+
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server is started on 127.0.0.1:" + (process.env.PORT || 5000));
+});
+
+app.post("/post", (req, res) => {
+  console.log("Connected to React");
+  let password = req.body.password;
+  let phoneNumber_or_emailAddress = req.body.phoneNumber_or_emailAddress;
+  console.log(password + "     " + phoneNumber_or_emailAddress);
+  // res.redirect("/");
+  res.send("yyy");
+  //alert("yyy");
+});
 
 // basicUser.create(
 //   {

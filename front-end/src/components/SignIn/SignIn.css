@@ -1,0 +1,263 @@
+.back-div-signin {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.541);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  .back-div-signin .sign-in-form {
+    width: 95%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+    display: none;
+  }
+  .back-div-signin #bigTitle {
+    font-family: our-font-bold;
+    color: var(--dark-gray);
+    font-size: 1.2rem;
+    margin-top: 2.6vw;
+    margin-left: 12vw;
+    margin-right: 12vw;
+    text-align: center;
+  }
+  .back-div-signin .rows {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .back-div-signin .labels {
+    font-family: our-font;
+    font-size: 0.7rem;
+    color: var(--light-gray);
+    margin-top: 3.4vw;
+  }
+  
+  .back-div-signin input[type="text"],
+  .back-div-signin input[type="number"],
+  .back-div-signin input[type="email"],
+  .back-div-signin input[type="password"],
+  input[type="tel"] {
+    width: 100%;
+    margin-top: 1%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 0.6rem;
+    transition: 0.4s;
+    outline: none;
+    caret-color: var(--light-blue);
+    font-family: our-font;
+  }
+  .back-div-signin input[type="text"]:focus,
+  .back-div-signin input[type="number"]:focus,
+  .back-div-signin input[type="email"]:focus,
+  .back-div-signin input[type="password"]:focus,
+  input[type="tel"]:focus {
+    border: 1px solid var(--light-blue);
+    color: var(--light-blue);
+  }
+  
+  .back-div-signin #submit {
+    background-color: var(--light-blue);
+    font-size: 0.8rem;
+    color: rgb(255, 255, 255);
+    padding: 10px 30px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: 6vw;
+    border-radius: 4px;
+    transition: 0.2s;
+    font-family: our-font-bold;
+  }
+  .back-div-signin #submit:hover {
+    background-color: var(--dark-blue);
+  }
+  .back-div-signin svg {
+    width: 22px;
+    height: 22px;
+    align-self: flex-end;
+    margin-top: 9px;
+    margin-right: 9px;
+    cursor: pointer;
+    fill: var(--light-gray);
+    transition: all 0.2s ease-in;
+  }
+  .back-div-signin svg:hover {
+    fill: var(--dark-blue);
+  }
+  
+  .back-div-signin #agree_txt {
+    margin-top: 1.1em;
+    font-family: our-font;
+    font-size: 1rem;
+    color: var(--dark-gray);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: horizontal;
+    width: 100%;
+  }
+  .back-div-signin a {
+    font-size: 0.85rem;
+    color: var(--dark-blue);
+    font-family: our-font-bold;
+    cursor: pointer;
+  }
+  .back-div-signin a:hover {
+    text-decoration: none;
+  }
+  .back-div-signin #checkbox_b {
+    width: 7%;
+    min-height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: horizontal;
+  }
+  .back-div-signin #checkbox_t {
+    width: 100%;
+    font-size: 0.8rem;
+    font-family: our-font-bold;
+  }
+  
+  .back-div-signin #em_margin {
+    margin-top: 17%;
+  }
+  
+  .back-div-signin #login_id {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 10vw;
+  }
+  
+#reset_password{
+  margin-top: 10px;
+}
+
+  #login_id button{
+    color: var(--dark-blue);
+  font-family: our-font-bold;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  }
+
+  #login_id button{
+  text-decoration: none;
+  }
+
+  .back-div-signin #hr_divider {
+    width: 89%;
+    margin-bottom: 7vw;
+    margin-top: 7vw;
+    border-top: 1.5px dotted var(--light-gray);
+    opacity: 0.3;
+  }
+  .back-div-signin #sign_in_create_account {
+    margin-top: 4vw;
+  }
+  
+  @media all and (min-width: 750px) {
+    .back-div-signin .sign-in-form {
+      width: 35%;
+    }
+    .back-div-signin #bigTitle {
+      font-size: 1.5rem;
+      margin-top: 1.6vw;
+      margin-left: 3vw;
+      margin-right: 3vw;
+    }
+    .back-div-signin #em_margin {
+      margin-top: 10%;
+    }
+    .back-div-signin svg {
+      margin-top: 12px;
+      margin-right: 12px;
+    }
+    .back-div-signin .labels {
+      font-size: 0.8rem;
+      margin-top: 1vw;
+    }
+    .back-div-signin input[type="text"],
+    .back-div-signin input[type="number"],
+    .back-div-signin input[type="email"],
+    .back-div-signin input[type="password"],
+    input[type="tel"] {
+      width: 100%;
+      margin-top: 1%;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+    }
+  
+    .back-div-signin .dob_input {
+      margin-left: 0vw;
+    }
+  
+    .back-div-signin #checkbox_t {
+      width: 92%;
+      font-size: 1rem;
+    }
+  
+    .back-div-signin #checkbox_b {
+      width: 7%;
+      min-height: 23px;
+    }
+    .back-div-signin #submit {
+      font-size: 1.05rem;
+      margin-top: 2vw;
+      margin-bottom: 1vw;
+    }
+    .back-div-signin a {
+      font-size: 1.05rem;
+      text-decoration: underline;
+    }
+    .back-div-signin #hr_divider {
+      margin-top: 1.5vw;
+      margin-bottom: 2vw;
+    }
+    .back-div-signin #login_id {
+      margin-bottom: 2.5vw;
+    }
+    .back-div-signin #sign_in_create_account {
+      margin-top: 0.5vw;
+    }
+  }
+  
+  @media only screen and (min-width: 750px) and (max-width: 1100px) {
+    .back-div-signin #bigTitle {
+      font-size: 1.1rem;
+      margin-top: 2.6vw;
+      margin-left: 3vw;
+      margin-right: 3vw;
+    }
+    .back-div-signin a {
+      font-size: 1rem;
+    }
+    .back-div-signin #login_id {
+      margin-top: 2vw;
+    }
+    .back-div-signin #sign_in_create_account {
+      margin-top: 2vw;
+    }
+  }
+  
