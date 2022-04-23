@@ -4,12 +4,11 @@
   justify-content: center;
   align-items: center;
   margin: 2em 0;
-  .drop-down-box:first-child{
+  .drop-down-box:first-child {
     margin-bottom: 1em;
-}
+  }
 }
 #search-button {
-  //Made bigger to have more contrast on the hero section
   width: 100%;
   aspect-ratio: 1/0.15;
   margin-top: 2em;
@@ -19,34 +18,42 @@
 }
 
 @media all and (min-width: 820px) {
-    #search-form {
-        flex-direction: row;
-        // background-color: greenyellow;
-        margin: 2em auto;
-        width: 90%;
-        min-width: 40em;
-        border-radius: var(--border-radius-full-rounded);
-        .drop-down-box{
-            width: 45%; 
-        }
-        .drop-down-box:first-child{
-            margin-bottom: 0;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        .drop-down-box:nth-child(2){
-           border-radius: 0;
-        }
+  #search-form {
+    flex-direction: row;
+    margin: 2em auto;
+    width: 80%;
+    height: 4em;
+    border-radius: var(--border-radius-full-rounded);
+    box-shadow: 0 0 20px 0 #dddddd;
+    .drop-down-box {
+      width: 45%;
+      height: 100%;
+      box-shadow: none;
+      &:hover {
+        outline: thin solid var(--light-blue);
       }
+      &.focused {
+        outline: thin solid var(--light-blue);
+      }
+    }
+    .drop-down-box:first-child {
+      margin-bottom: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: thin solid #cccccc;
+    }
+    .drop-down-box:nth-child(2) {
+      border-radius: 0;
+    }
+  }
   #search-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    height: 10em;
+    height: 100%;
     width: 10%;
     margin-top: 0;
     svg {
-      width: 2.5em;
+      width: 45%;
     }
   }
- 
 }

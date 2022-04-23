@@ -7,9 +7,9 @@ svgIcon must be passed by passed by props after being
 imported as ReactComponent.
 id is optional for css customization.
 */
-const IconButton = ({ svgIcon, id }) => {
+const IconButton = ({ svgIcon, id, type }) => {
   return (
-    <button className="svg-icon-button" id={id}>
+    <button className="svg-icon-button" id={id} type={type}>
       {svgIcon}
     </button>
   );
