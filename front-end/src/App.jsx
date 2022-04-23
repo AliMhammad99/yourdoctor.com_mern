@@ -2,6 +2,7 @@ import Loading from "./components/Loading";
 import GuestNav from "./components/GuestNav";
 import HeroSection from "./components/HeroSection";
 import Button from "./components/Button";
+
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
 Code splitting: https://reactjs.org/docs/code-splitting.html
@@ -19,7 +20,6 @@ function App() {
       <main>
         <HeroSection />
       </main>
-      <Button buttonName="Button" />
     </>
   );
 }
