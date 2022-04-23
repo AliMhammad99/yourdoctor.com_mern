@@ -13,7 +13,7 @@ const modelInfo = new Schema(
       },
     ],
     professional_biography: String,
-    specialty: String,
+    specialty: { type: Schema.Types.ObjectId, ref: "specialty" },
     certificate: { certificate_image: String, is_verified: Boolean },
     clinic: {
       name: String,
