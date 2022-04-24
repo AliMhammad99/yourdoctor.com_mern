@@ -9,7 +9,6 @@ const userInfo = new Schema(
     date_of_birth: Date,
     phone_number: Number,
     profile_picture: String,
-    user_type: String,
   },
   { collection: "basic_user" }
 );

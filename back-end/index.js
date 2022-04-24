@@ -3,7 +3,30 @@ const dotenv = require("dotenv").config();
 const basicUser = require("./models/basic_user");
 const account = require("./models/account");
 const notification = require("./models/notification");
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+var signUp = {
+  username: "",
+  password: "",
+  reEnterPassword: "",
+  firstName: "",
+  lastName: "",
+  emailAddress: "",
+  phoneNumber: "",
+  gender: "",
+  dateOfBirth: new Date(),
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
 mongoose
   .connect(process.env.YOUR_DOCTOR_DB_URI, {
     useNewUrlParser: true,
@@ -12,6 +35,86 @@ mongoose
     console.error(err.stack);
     process.exit(1);
   });
+
+app.listen(process.env.PORT || 5000, () => {
+  console.log(
+    "Server is started on http://localhost:" + (process.env.PORT || 5000)
+  );
+});
+
+app.post("/post", (req, res) => {
+  console.log("Connected to React");
+  let password = req.body.password;
+  let phoneNumber_or_emailAddress = req.body.phoneNumber_or_emailAddress;
+  console.log(password + "     " + phoneNumber_or_emailAddress);
+  // res.redirect("/");
+  res.send("yyy");
+  //alert("yyy");
+});
+
+app.post("/signUp", (req, res) => {
+  console.log("Connected to React1");
+  signUp.username = req.body.username;
+  signUp.password = req.body.password;
+  signUp.firstName = req.body.firstName;
+  signUp.lastName = req.body.lastName;
+  signUp.emailAddress = req.body.emailAddress;
+  signUp.gender = req.body.gender;
+  signUp.phoneNumber = req.body.phoneNumber;
+  signUp.dateOfBirth = req.body.dateOfBirth;
+  // console.log(
+  //   signUp.username +
+  //     "  " +
+  //     signUp.password +
+  //     "  " +
+  //     signUp.reEnterPassword +
+  //     "  " +
+  //     signUp.firstName +
+  //     "  " +
+  //     signUp.lastName +
+  //     "  " +
+  //     signUp.emailAddress +
+  //     "  " +
+  //     signUp.gender +
+  //     "  " +
+  //     signUp.phoneNumber +
+  //     "  " +
+  //     signUp.dateOfBirth
+  // );
+  CreatebasicUser();
+});
+
+function CreatebasicUser() {
+  basicUser.create(
+    {
+      first_name: signUp.firstName,
+      last_name: signUp.lastName,
+      gender: signUp.gender,
+      date_of_birth: signUp.dateOfBirth,
+      phone_number: parseInt(signUp.phoneNumber),
+      profile_picture: "person.jpg",
+    },
+    (error, user) => {
+      console.log(error, user);
+    }
+  );
+}
+
+// account.create(
+//   {
+//     email: "ali@gmail.com",
+//     username: "alimhmd",
+//     password_salt: "grrhtnggrnrreww",
+//     password_hash: "fbfnhtgrteereed",
+//     balance: 0,
+//     is_activated: false,
+//     user_id: mongoose.Types.ObjectId("6256cae0f6d570985782ae3f"),
+//   }
+//   // ,
+//   // (error, user) => {
+//   //   console.log(error, user);
+//   // }
+// );
 
 // basicUser.create(
 //   {
