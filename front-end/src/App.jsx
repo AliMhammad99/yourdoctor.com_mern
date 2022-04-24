@@ -1,9 +1,6 @@
 import Loading from "./components/Loading";
 import GuestNav from "./components/GuestNav";
 import HeroSection from "./components/HeroSection";
-import Button from "./components/Button";
-
-//import BackDiv from "./components/SignUp/BackDiv";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 
@@ -21,9 +18,14 @@ function App() {
     <>
       <Loading />
       <GuestNav />
-      <Button buttonName="Button" />
+
       <SignUp />
       <SignIn />
+
+      <main>
+        <HeroSection />
+      </main>
+
     </>
   );
 }
