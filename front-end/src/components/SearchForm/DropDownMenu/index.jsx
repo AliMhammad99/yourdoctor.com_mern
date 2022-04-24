@@ -1,6 +1,8 @@
 import React from "react";
 import "DropDownMenu.scss";
 
-function DropDownMenu() {
-  return <div class="drop-down-menu"></div>;
+function DropDownMenu({ isVisible, menuItems, searchKeyword }) {
+  return <div class="drop-down-menu">Menu</div>;
 }
+
+export default DropDownMenu;

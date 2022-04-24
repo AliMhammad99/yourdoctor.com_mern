@@ -64,6 +64,7 @@ function DropDownMenu({ svgIcon, hint, id }) {
         placeholder={hint}
         className="drop-down-input"
       />
+      <DropDownMenu />
     </div>
   );
 }
