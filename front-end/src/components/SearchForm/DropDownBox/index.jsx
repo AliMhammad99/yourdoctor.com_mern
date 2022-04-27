@@ -2,22 +2,23 @@ import React from "react";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
+import ClearButton from "../ClearButton";
 // import DropDownMenu from "../DropDownMenu";
 import "./DropDownBox.scss";
 
 //DropDownMenu Lazy import (will be imported when needed for rendering)
 //The setTimeout is only for testing purpose to simulate slow connection
-const DropDownMenu = React.lazy(() =>
-  import("../DropDownMenu").then((module) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(module);
-      }, 1000);
-    });
-  })
-);
+// const DropDownMenu = React.lazy(() =>
+//   import("../DropDownMenu").then((module) => {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve(module);
+//       }, 1000);
+//     });
+//   })
+// );
 //This is the one that should be used really:
-//const DropDownMenu = React.lazy(() => import("../DropDownMenu"));
+const DropDownMenu = React.lazy(() => import("../DropDownMenu"));
 
 function DropDownBox({ svgIcon, hint, id }) {
   //States
@@ -65,6 +66,9 @@ function DropDownBox({ svgIcon, hint, id }) {
   const unfocusDropDownInput = () => {
     dropDownBoxRef.current.querySelector(".drop-down-input").blur();
   };
+  const clearSearchKeyword = () => {
+    setSearchKeyword("");
+  };
 
   return (
     <div
@@ -109,6 +113,9 @@ function DropDownBox({ svgIcon, hint, id }) {
         }
       </Suspense>
       {isLoading && <LoadingSpinner />}
+      {searchKeyword && !isLoading && (
+        <ClearButton onClick={clearSearchKeyword} />
+      )}
     </div>
   );
 }

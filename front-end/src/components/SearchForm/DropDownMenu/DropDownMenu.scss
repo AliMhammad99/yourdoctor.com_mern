@@ -14,7 +14,7 @@
   text-align: start;
   padding-top: 0.5em;
   border-bottom: 0.5em solid white;
-  li {
+  > li {
     padding: 0.5em 1.2em;
     cursor: pointer;
     &:hover {

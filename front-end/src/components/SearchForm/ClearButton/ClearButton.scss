@@ -1,0 +1,23 @@
+.box-clear-button {
+  //   background-color: greenyellow;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //   aspect-ratio: 1;
+  position: absolute;
+  right: 1.25em;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  > svg {
+    width: 70%;
+    fill: var(--light-gray);
+  }
+  &:hover {
+    > svg {
+      fill: var(--light-blue);
+    }
+  }
+}
