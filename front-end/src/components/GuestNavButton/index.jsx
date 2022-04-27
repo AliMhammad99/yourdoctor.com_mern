@@ -2,6 +2,7 @@ import React from "react";
 import { memo } from "react";
 import "./GuestNavButton.scss";
 
+
 function NavBarButtonsClickListener(button_clicked) {
   if (button_clicked === "Search") {
   } else if (button_clicked === "Login") {
