@@ -1,4 +1,5 @@
 .drop-down-box {
+  background-color: white;
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -7,7 +8,8 @@
   box-shadow: 0 0 6px 0 var(--light-gray);
   padding: 2.5% 5%;
   transition: var(--hover-transition-time) box-shadow;
-  svg {
+  position: relative;
+  > svg {
     fill: var(--dark-gray);
     width: 8%;
     aspect-ratio: 1;
@@ -25,7 +27,7 @@
   }
   &.focused {
     box-shadow: 0 0 6px 0 var(--light-blue);
-    svg {
+    > svg {
       fill: var(--light-blue);
     }
   }
@@ -36,7 +38,7 @@
     width: auto;
     cursor: pointer;
     padding: 2% 2%;
-    svg {
+    > svg {
       width: 2em;
     }
     .drop-down-input {
@@ -44,7 +46,7 @@
     }
     &:hover {
       box-shadow: 0 0 6px 0 var(--light-blue);
-      svg {
+      > svg {
         fill: var(--light-blue);
       }
     }

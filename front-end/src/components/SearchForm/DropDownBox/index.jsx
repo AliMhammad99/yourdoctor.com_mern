@@ -1,11 +1,30 @@
+import React from "react";
+import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
+import LoadingSpinner from "../LoadingSpinner";
+import ClearButton from "../ClearButton";
+// import DropDownMenu from "../DropDownMenu";
 import "./DropDownBox.scss";
 
-function DropDownMenu({ svgIcon, hint, id }) {
+//DropDownMenu Lazy import (will be imported when needed for rendering)
+//The setTimeout is only for testing purpose to simulate slow connection
+// const DropDownMenu = React.lazy(() =>
+//   import("../DropDownMenu").then((module) => {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve(module);
+//       }, 1000);
+//     });
+//   })
+// );
+//This is the one that should be used really:
+const DropDownMenu = React.lazy(() => import("../DropDownMenu"));
+
+function DropDownBox({ svgIcon, hint, id }) {
   //States
   const [focused, setFocused] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   //Refs
   const dropDownBoxRef = useRef();
 
@@ -47,6 +66,10 @@ function DropDownMenu({ svgIcon, hint, id }) {
   const unfocusDropDownInput = () => {
     dropDownBoxRef.current.querySelector(".drop-down-input").blur();
   };
+  const clearSearchKeyword = () => {
+    setSearchKeyword("");
+  };
+
   return (
     <div
       onClick={handleFocus}
@@ -64,7 +87,36 @@ function DropDownMenu({ svgIcon, hint, id }) {
         placeholder={hint}
         className="drop-down-input"
       />
+      <Suspense fallback={<LoadingSpinner />}>
+        {
+          //Render DropDownMenu only on focus
+          focused && (
+            <DropDownMenu
+              menuItems={[
+                "Item1",
+                "Item2",
+                "Item3",
+                "Item4",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+                "Item",
+              ]}
+            />
+          )
+        }
+      </Suspense>
+      {isLoading && <LoadingSpinner />}
+      {searchKeyword && !isLoading && (
+        <ClearButton onClick={clearSearchKeyword} />
+      )}
     </div>
   );
 }
-export default DropDownMenu;
+export default DropDownBox;
