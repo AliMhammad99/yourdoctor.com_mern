@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import ClearButton from "../ClearButton";
-// import DropDownMenu from "../DropDownMenu";
 import "./DropDownBox.scss";
 
 //DropDownMenu Lazy import (will be imported when needed for rendering)
