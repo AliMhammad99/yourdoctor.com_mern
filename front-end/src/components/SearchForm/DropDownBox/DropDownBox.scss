@@ -1,4 +1,5 @@
 .drop-down-box {
+  background-color: white;
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -7,6 +8,7 @@
   box-shadow: 0 0 6px 0 var(--light-gray);
   padding: 2.5% 5%;
   transition: var(--hover-transition-time) box-shadow;
+  position: relative;
   svg {
     fill: var(--dark-gray);
     width: 8%;
