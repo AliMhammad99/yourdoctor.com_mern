@@ -1,32 +1,31 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
-const basicUser = require("./models/basic_user");
-const account = require("./models/account");
-const notification = require("./models/notification");
-const express = require("express");
-const app = express();
-const cors = require("cors");
+import mongoose from "mongoose";
+import express from "express";
+import app from "./server.js";
+//const dotenv = require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
+//const app = express();
 
-const corsOptions = {
-  origin: "http://localhost:3000",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: "http://localhost:3000",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
 
-var signUp = {
-  username: "",
-  password: "",
-  reEnterPassword: "",
-  firstName: "",
-  lastName: "",
-  emailAddress: "",
-  phoneNumber: "",
-  gender: "",
-  dateOfBirth: new Date(),
-};
+// var signUp = {
+//   username: "",
+//   password: "",
+//   reEnterPassword: "",
+//   firstName: "",
+//   lastName: "",
+//   emailAddress: "",
+//   phoneNumber: "",
+//   gender: "",
+//   dateOfBirth: new Date(),
+// };
 
-app.use(cors(corsOptions));
-app.use(express.json());
+// app.use(cors(corsOptions));
+//app.use(express.json());
 mongoose
   .connect(process.env.YOUR_DOCTOR_DB_URI, {
     useNewUrlParser: true,
@@ -42,63 +41,63 @@ app.listen(process.env.PORT || 5000, () => {
   );
 });
 
-app.post("/post", (req, res) => {
-  console.log("Connected to React");
-  let password = req.body.password;
-  let phoneNumber_or_emailAddress = req.body.phoneNumber_or_emailAddress;
-  console.log(password + "     " + phoneNumber_or_emailAddress);
-  // res.redirect("/");
-  res.send("yyy");
-  //alert("yyy");
-});
+// app.post("/post", (req, res) => {
+//   console.log("Connected to React");
+//   let password = req.body.password;
+//   let phoneNumber_or_emailAddress = req.body.phoneNumber_or_emailAddress;
+//   console.log(password + "     " + phoneNumber_or_emailAddress);
+//   // res.redirect("/");
+//   res.send("yyy");
+//   //alert("yyy");
+// });
 
-app.post("/signUp", (req, res) => {
-  console.log("Connected to React1");
-  signUp.username = req.body.username;
-  signUp.password = req.body.password;
-  signUp.firstName = req.body.firstName;
-  signUp.lastName = req.body.lastName;
-  signUp.emailAddress = req.body.emailAddress;
-  signUp.gender = req.body.gender;
-  signUp.phoneNumber = req.body.phoneNumber;
-  signUp.dateOfBirth = req.body.dateOfBirth;
-  // console.log(
-  //   signUp.username +
-  //     "  " +
-  //     signUp.password +
-  //     "  " +
-  //     signUp.reEnterPassword +
-  //     "  " +
-  //     signUp.firstName +
-  //     "  " +
-  //     signUp.lastName +
-  //     "  " +
-  //     signUp.emailAddress +
-  //     "  " +
-  //     signUp.gender +
-  //     "  " +
-  //     signUp.phoneNumber +
-  //     "  " +
-  //     signUp.dateOfBirth
-  // );
-  CreatebasicUser();
-});
+// app.post("/signUp", (req, res) => {
+//   console.log("Connected to React1");
+//   signUp.username = req.body.username;
+//   signUp.password = req.body.password;
+//   signUp.firstName = req.body.firstName;
+//   signUp.lastName = req.body.lastName;
+//   signUp.emailAddress = req.body.emailAddress;
+//   signUp.gender = req.body.gender;
+//   signUp.phoneNumber = req.body.phoneNumber;
+//   signUp.dateOfBirth = req.body.dateOfBirth;
+// console.log(
+//   signUp.username +
+//     "  " +
+//     signUp.password +
+//     "  " +
+//     signUp.reEnterPassword +
+//     "  " +
+//     signUp.firstName +
+//     "  " +
+//     signUp.lastName +
+//     "  " +
+//     signUp.emailAddress +
+//     "  " +
+//     signUp.gender +
+//     "  " +
+//     signUp.phoneNumber +
+//     "  " +
+//     signUp.dateOfBirth
+// );
+//   CreatebasicUser();
+// });
 
-function CreatebasicUser() {
-  basicUser.create(
-    {
-      first_name: signUp.firstName,
-      last_name: signUp.lastName,
-      gender: signUp.gender,
-      date_of_birth: signUp.dateOfBirth,
-      phone_number: parseInt(signUp.phoneNumber),
-      profile_picture: "person.jpg",
-    },
-    (error, user) => {
-      console.log(error, user);
-    }
-  );
-}
+// function CreatebasicUser() {
+//   basicUser.create(
+//     {
+//       first_name: signUp.firstName,
+//       last_name: signUp.lastName,
+//       gender: signUp.gender,
+//       date_of_birth: signUp.dateOfBirth,
+//       phone_number: parseInt(signUp.phoneNumber),
+//       profile_picture: "person.jpg",
+//     },
+//     (error, user) => {
+//       console.log(error, user);
+//     }
+//   );
+// }
 
 // account.create(
 //   {
@@ -215,100 +214,3 @@ function CreatebasicUser() {
 // user.find({}, (error, user) => {
 //   console.log(error, user);
 // });
-
-//1
-// import app from "./server.js";
-// import mongodb from "mongodb";
-// import dotenv from "dotenv";
-
-// //command: "nodemon server" to start the backend server
-
-// dotenv.config();
-// const MongoClient = mongodb.MongoClient;
-
-// const port = process.env.port || 8000;
-// console.log("Port: " + port);
-// console.log("URI :" + process.env.YOUR_DOCTOR_DB_URI);
-// MongoClient.connect(process.env.YOUR_DOCTOR_DB_URI, {
-//   maxPoolSize: 50,
-//   wtimeoutMS: 1000,
-//   useNewUrlParser: true,
-// })
-// .catch((err) => {
-//   console.error(err.stack);
-//   process.exit(1);
-// })
-// .then(async (client) => {
-//   app.listen(port, () => {
-//     console.log(`listening on port ${port}`);
-//   });
-// });
-
-//2.
-// import { MongoClient, ServerApiVersion } from "mongodb";
-// const uri =
-//   "mongodb+srv://yourdoctor:yourdoctor.mongodb@yourdoctorcluster.bdtak.mongodb.net/YourDoctor?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   serverApi: ServerApiVersion.v1,
-// });
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   console.log("Connected successfully");
-//   client.close();
-// });
-
-//3.
-// import app from "./server.js";
-// // import mongodb from "mongodb";
-// import dotenv from "dotenv";
-// import { MongoClient, ServerApiVersion } from "mongodb";
-
-// dotenv.config();
-// const port = process.env.port || 8000;
-// console.log("Port: " + port);
-// console.log("URI :" + process.env.YOUR_DOCTOR_DB_URI);
-
-// const client = new MongoClient(process.env.YOUR_DOCTOR_DB_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   serverApi: ServerApiVersion.v1,
-// });
-// // client.connect((err) => {
-// //   const collection = client.db("test").collection("devices");
-// //   // perform actions on the collection object
-// //   client.close();
-// // });
-
-//4.
-// import app from "./server.js";
-// import mongodb from "mongodb";
-// import dotenv from "dotenv";
-// // const {MongoClient} = require('mongodb');
-// // import MongoClient from "mongodb";
-// dotenv.config();
-// const client = new mongodb.MongoClient(process.env.YOUR_DOCTOR_DB_URI)
-// await client.connect(() => {
-// //   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   console.log("Connected");
-//   client.close();
-//   }).catch((err) => {
-//   console.error(err.stack);
-//   process.exit(1);
-// })
-
-// try {
-//     await client.connect();
-
-//     // await listDatabases(client);
-//     databasesList = await client.db().admin().listDatabases();
-
-//     console.log("Databases:");
-//     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-
-// } catch (error) {
-//     console.error(error.stack);
-// }
