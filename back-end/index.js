@@ -1,28 +1,49 @@
 import mongoose from "mongoose";
+import mongodb from "mongodb";
 import app from "./server.js";
 import dotenv from "dotenv";
+import SpecialtyDAO from "./dao/SpecialtyDAO.js";
 
 //To access environmental variables inside .env
 dotenv.config();
 
+const MongoClient = mongodb.MongoClient;
+
 //Back-end server port
 const port = process.env.PORT || 8000;
 
-//Connection to MongoDB
-mongoose
-  .connect(process.env.YOUR_DOCTOR_DB_URI, {
-    useNewUrlParser: true,
-  })
+//Connection to MongoDB Atlas
+MongoClient.connect(process.env.YOUR_DOCTOR_DB_URI, {
+  maxPoolSize: 50,
+  wtimeoutMS: 2500,
+  useNewUrlParser: true,
+})
   .catch((err) => {
     console.error(err.stack);
     process.exit(1);
   })
   .then(async (client) => {
-    //After successful connection, the backend (app) starts listening
+    await SpecialtyDAO.injectDB(client);
     app.listen(port, () => {
-      console.log("Server is started on http://localhost:" + port);
+      console.log(`Listening on port ${port}`);
     });
   });
+// mongoose
+//   .connect(process.env.YOUR_DOCTOR_DB_URI, {
+//     useNewUrlParser: true,
+//   })
+//   .catch((err) => {
+//     console.error(err.stack);
+//     process.exit(1);
+//   })
+//   .then(async (client) => {
+//     await SpecialtyDAO.injectDB(client);
+//     // console.log(client);
+//     //After successful connection, the backend (app) starts listening on the port
+//     app.listen(port, () => {
+//       console.log("Server is started on http://localhost:" + port);
+//     });
+//   });
 
 // const corsOptions = {
 //   origin: "http://localhost:3000",
