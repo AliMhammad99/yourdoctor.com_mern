@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const modelInfo = new Schema(
+const modelInfo = new mongoose.Schema(
   {
-    specialty_name: String,
+    specialty_name: {
+      type: String,
+      required: true,
+    },
   },
   { collection: "specialty" }
 );
-const model = mongoose.model("specialty", modelInfo);
-module.exports = model;
+module.exports = mongoose.model("specialty", modelInfo);
