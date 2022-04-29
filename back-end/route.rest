@@ -27,3 +27,6 @@ Content-Type: application/json
 
 ### Delete one
 DELETE http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+
+### Get Specialty by name
+GET http://localhost:5000/specialty?specialty_name=Dentist

@@ -4,10 +4,10 @@ const Specialty = require("../models/specialty");
 
 // Routes for CRUD Operations (CRUD: Create, Read, Update, Delete)
 
-// 1. Gett all specialties
+// 1. Gett specialty based on query
 router.get("/", async (req, res) => {
   try {
-    const specialties = await Specialty.find();
+    const specialties = await Specialty.find(req.query);
     res.json(specialties);
   } catch (err) {
     // status 500 means an error occured on the server
@@ -15,8 +15,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// 2. Get one specialty
-router.get("/:id", getSpecialty, async (req, res) => {
+// 2. Get one specialty by id
+router.get("/:id", getSpecialtyById, async (req, res) => {
   res.send(res.specialty);
 });
 
@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
 });
 
 // 4. update one specialty
-router.patch("/:id", getSpecialty, async (req, res) => {
+router.patch("/:id", getSpecialtyById, async (req, res) => {
   if (req.body.specialty_name != null) {
     res.specialty.specialty_name = req.body.specialty_name;
   }
@@ -53,7 +53,7 @@ router.patch("/:id", getSpecialty, async (req, res) => {
 });
 
 // 5. Delete one specialty
-router.delete("/:id", getSpecialty, async (req, res) => {
+router.delete("/:id", getSpecialtyById, async (req, res) => {
   try {
     await res.specialty.remove();
     res.json({ message: "Specialty Deleted Successfully" });
@@ -62,7 +62,7 @@ router.delete("/:id", getSpecialty, async (req, res) => {
   }
 });
 
-async function getSpecialty(req, res, next) {
+async function getSpecialtyById(req, res, next) {
   /* This function is used to check if a specialty exists with the given id*/
   /* This function is needed a lot in our operations above,
      that's why we created this function (reduce code redundancy)*/

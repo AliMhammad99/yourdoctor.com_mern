@@ -2,27 +2,37 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = require("./server.js");
 
-//To access environmental variables inside .env
+// To access environmental variables inside .env
 dotenv.config();
 
-//Back-end server port
+// Back-end server port
 const port = process.env.PORT || 8000;
 
-//Connection to MongoDB Atlas
-mongoose
-  .connect(process.env.YOUR_DOCTOR_DB_URI, {
-    useNewUrlParser: true,
-  })
-  .catch((err) => {
-    console.error(err.stack);
-    process.exit(1);
-  })
-  .then(async (client) => {
-    //After successful connection, the backend (app) starts listening on the port
-    app.listen(port, () => {
-      console.log("Server is started on http://localhost:" + port);
-    });
-  });
+// Connection to MongoDB Atlas
+mongoose.connect(process.env.YOUR_DOCTOR_DB_URI, {
+  useNewUrlParser: true,
+});
+
+// Check if connection succeeded
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Connected to Database"));
+
+// Start the backend server
+app.listen(port, () => {
+  console.log("Server started on http://localhost:" + port);
+});
+
+// .catch((err) => {
+//   console.error(err.stack);
+//   process.exit(1);
+// })
+// .then(async (client) => {
+//   //After successful connection, the backend (app) starts listening on the port
+//   app.listen(port, () => {
+//     console.log("Server is started on http://localhost:" + port);
+//   });
+// });
 
 // const corsOptions = {
 //   origin: "http://localhost:3000",
