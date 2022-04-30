@@ -1,0 +1,32 @@
+### Testing REST APIs
+
+### Get all
+
+GET http://localhost:5000/specialty
+
+### Get by id
+
+GET http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+
+### Create one
+
+POST http://localhost:5000/specialty
+Content-Type: application/json
+
+{
+ "specialty_name":"test_name"
+}
+
+### Update one
+PATCH http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+Content-Type: application/json
+
+{
+    "specialty_name":"New Name"
+}
+
+### Delete one
+DELETE http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+
+### Get Specialty by name
+GET http://localhost:5000/specialty?specialty_name=Dentist
