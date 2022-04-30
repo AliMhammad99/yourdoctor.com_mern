@@ -92,9 +92,7 @@ function DropDownBox({ svgIcon, hint, id }) {
         {
           //Render DropDownMenu only on focus
           focused && (
-            <DropDownMenu
-              menuItems={SpecialtyDataService.getSpecialty()}
-            />
+            <DropDownMenu menuItems={SpecialtyDataService.getSpecialty()} />
           )
         }
       </Suspense>

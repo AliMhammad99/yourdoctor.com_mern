@@ -2,6 +2,7 @@ import React from "react";
 import "./DropDownMenu.scss";
 
 function DropDownMenu({ menuItems, searchKeyword, isLoading }) {
+  console.log(menuItems);
   return (
     <ul className="drop-down-menu">
       {menuItems.map((menuItem, index) => {

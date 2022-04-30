@@ -4,6 +4,6 @@ class SpecialtyDataService{
     static getSpecialty(query=""){
         return http.get(`?${query}`);
     }
-}
+  }
 
 export default SpecialtyDataService;
