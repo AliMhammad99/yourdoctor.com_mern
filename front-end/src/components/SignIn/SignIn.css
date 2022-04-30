@@ -3,24 +3,22 @@
     width: 100%;
     min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.541);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     top: 0;
     left: 0;
-    display: none;
   }
   .back-div-signin .sign-in-form {
     width: 95%;
     background-color: rgb(255, 255, 255);
-    display: flex;
+    display: none;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     border-radius: 5px;
     margin-top: 3vw;
     margin-bottom: 3vw;
-    display: none;
   }
   .back-div-signin #bigTitle {
     font-family: our-font-bold;

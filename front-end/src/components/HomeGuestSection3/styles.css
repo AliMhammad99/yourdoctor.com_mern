@@ -1,0 +1,43 @@
+.HomeGuestSection3_fullDiv{
+    width: 99.5vw;
+    height: 35vw;
+    margin-top: 3vw;
+    display: flex;
+    flex-direction: horizontal;
+    justify-content: center;
+    align-items: center;
+    margin-left:-14vw;
+    margin-right:-14vw;
+    /* background-color: var(--light-blue); */
+    background-color: #4fb3cc77;
+}
+
+.HomeGuestSection3_fullDiv img{
+    width: 31vw;
+   height: 31vw;
+   margin-left: 4vw;
+}
+
+#HomeGuestSection3_text{
+    width: 27vw;
+    margin-right: 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#HomeGuestSection3_text h2{
+    font-family: our-font;
+    font-size: var(--font-size-medium);
+    line-height: 31px;
+}
+
+#HomeGuestSection3_text h4{
+    margin-top: 0.9vw;
+    font-size: var(--font-size-small);
+    font-family: our-font-bold;
+    line-height: 26px;
+    margin-bottom: 1vw;
+}
+
