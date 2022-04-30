@@ -3,6 +3,8 @@ import GuestNav from "./components/GuestNav";
 import HeroSection from "./components/HeroSection";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
@@ -17,15 +19,14 @@ function App() {
   return (
     <>
       <Loading />
-      <GuestNav />
-
-      <SignUp />
       <SignIn />
-
-      <main>
-        <HeroSection />
-      </main>
-
+      <SignUp />
+      <Router>
+        <GuestNav />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+        </Routes>
+      </Router>
     </>
   );
 }
