@@ -1,8 +1,5 @@
 import Loading from "./components/Loading";
 import GuestNav from "./components/GuestNav";
-import HeroSection from "./components/HeroSection";
-import SignUp from "./components/SignUp";
-import SignIn from "./components/SignIn";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -19,8 +16,6 @@ function App() {
   return (
     <>
       <Loading />
-      <SignIn />
-      <SignUp />
       <Router>
         <GuestNav />
         <Routes>

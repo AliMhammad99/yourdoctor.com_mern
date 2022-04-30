@@ -1,0 +1,54 @@
+#HomeGuestFooter{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1vw;
+    margin-top: 3.5vw;
+}
+
+/* #HomeGuestFooter img{
+    width: 15vw;
+   height: 9vw;
+} */
+
+#HomeGuestFooterCopyright{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.GuestFotterIcons{
+    fill: var(--dark-gray);
+    width: 2.2vw;
+    height: 2.2vw;
+    cursor: pointer;
+    margin: 0.5vw;
+    transition: var(--hover-transition-time) all;
+}
+.GuestFotterIcons:hover{
+    fill: var(--dark-blue);
+}
+
+#HomeGuestFooter h2{
+    font-family: our-font-bold;
+    margin-top: 3.2vw;
+    font-size: var(--font-size-medium);
+}
+
+#HomeGuestFooterSocialMedia{
+    margin-top: 0.9vw;
+    margin-bottom: 4vw;
+}
+
+#HomeGuestFooter_text h4{
+    margin-top: 1vw;
+    font-size: var(--font-size-small);
+    font-family: our-font-thin;
+    line-height: 26px;
+}
+

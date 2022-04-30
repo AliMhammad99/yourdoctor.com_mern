@@ -7,9 +7,11 @@ function NavBarButtonsClickListener(button_clicked) {
   } else if (button_clicked === "Login") {
     document.querySelector(".sign-in-form").style.display = "flex";
     document.querySelector(".back-div-signin").style.display = "flex";
+    document.querySelector("body").style.overflow = "hidden";
   } else {
     document.querySelector(".back-div").style.display = "flex";
     document.querySelector(".sign-up-form").style.display = "flex";
+    document.querySelector("body").style.overflow = "hidden";
   }
 }
 

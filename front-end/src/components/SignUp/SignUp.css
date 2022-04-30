@@ -1,5 +1,3 @@
-
-
 .back-div {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.541);
@@ -10,16 +8,18 @@
   top: 0;
   left: 0;
   bottom: 0;
+  height: auto;
   overflow-y: auto;
   padding-bottom: 3%;
   padding-top: 60vw;
+  z-index: 5000;
 }
 .back-div .sign-up-form {
   width: 95%;
   background-color: white;
   display: none;
   top: 3%;
-  
+  z-index: 5000;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;

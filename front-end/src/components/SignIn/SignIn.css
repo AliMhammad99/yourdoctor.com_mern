@@ -8,6 +8,8 @@
     align-items: center;
     top: 0;
     left: 0;
+    bottom: 0;
+    z-index: 5000;
   }
   .back-div-signin .sign-in-form {
     width: 95%;
@@ -19,6 +21,7 @@
     border-radius: 5px;
     margin-top: 3vw;
     margin-bottom: 3vw;
+    z-index: 5000;
   }
   .back-div-signin #bigTitle {
     font-family: our-font-bold;

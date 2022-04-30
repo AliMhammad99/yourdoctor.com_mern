@@ -6,6 +6,7 @@ import axios from "axios";
 function close_icon_function() {
   document.querySelector(".sign-up-form").style.display = "none";
   document.querySelector(".back-div").style.display = "none";
+  document.querySelector("body").style.overflow = "scroll";
 }
 
 function signup_gotologin_function() {
