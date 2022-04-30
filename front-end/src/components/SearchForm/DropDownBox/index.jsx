@@ -5,6 +5,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import ClearButton from "../ClearButton";
 // import DropDownMenu from "../DropDownMenu";
 import "./DropDownBox.scss";
+import SpecialtyDataService from "../../../services/specialty";
 
 //DropDownMenu Lazy import (will be imported when needed for rendering)
 //The setTimeout is only for testing purpose to simulate slow connection
@@ -92,22 +93,7 @@ function DropDownBox({ svgIcon, hint, id }) {
           //Render DropDownMenu only on focus
           focused && (
             <DropDownMenu
-              menuItems={[
-                "Item1",
-                "Item2",
-                "Item3",
-                "Item4",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-                "Item",
-              ]}
+              menuItems={SpecialtyDataService.getSpecialty()}
             />
           )
         }
