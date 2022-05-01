@@ -26,6 +26,8 @@ function DropDownBox({ svgIcon, hint, id }) {
   const [focused, setFocused] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [dropDownMenuItems, setdropDownMenuItems] = useState([]);
+
   //Refs
   const dropDownBoxRef = useRef();
 
@@ -34,6 +36,7 @@ function DropDownBox({ svgIcon, hint, id }) {
     /*Called whenever setFocused is called*/
     if (focused) {
       focusDropDownInput();
+      fetchListItems();
     } else {
       unfocusDropDownInput();
     }
@@ -70,7 +73,18 @@ function DropDownBox({ svgIcon, hint, id }) {
   const clearSearchKeyword = () => {
     setSearchKeyword("");
   };
-
+  const fetchListItems = () => {
+    setIsLoading(true);
+    SpecialtyDataService.getAllSpecialties()
+      .then((res) => {
+        // console.log(res.data);
+        setdropDownMenuItems(res.data);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   return (
     <div
       onClick={handleFocus}
@@ -91,9 +105,7 @@ function DropDownBox({ svgIcon, hint, id }) {
       <Suspense fallback={<LoadingSpinner />}>
         {
           //Render DropDownMenu only on focus
-          focused && (
-            <DropDownMenu menuItems={SpecialtyDataService.getSpecialty()} />
-          )
+          focused && <DropDownMenu menuItems={dropDownMenuItems} />
         }
       </Suspense>
       {isLoading && <LoadingSpinner />}

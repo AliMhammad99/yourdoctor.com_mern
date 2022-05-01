@@ -30,3 +30,32 @@ DELETE http://localhost:5000/specialty/626b8528f04d1432012c8fc4
 
 ### Get Specialty by name
 GET http://localhost:5000/specialty?specialty_name=Dentist
+
+### Get All doctors
+GET http://localhost:5000/doctor
+
+### Create doctor
+POST http://localhost:5000/doctor
+Content-Type: application/json
+
+{
+    "basic_user_id":,
+    "years_of_experience": 5,
+    "spoken_languages": [
+      "French","English","Arabic"
+    ],
+    "professional_biography": "I am a Dentist with 5 years of experience",
+    "specialty_id": "6268ef32632cfdc52242206c",
+    "certificate": { 
+        "certificate_image": "certificate.jpg", 
+        "is_verified": "true"
+    },
+    "clinic": {
+      "name": "Super Dentist",
+      "location": {
+           "x": 100, 
+           "y": 100, 
+           "region_name": "Dental Land" 
+        }
+    }
+}

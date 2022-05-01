@@ -1,9 +1,12 @@
 import http from "../http-common";
 
-class SpecialtyDataService{
-    static getSpecialty(query=""){
-        return http.get(`?${query}`);
-    }
+class SpecialtyDataService {
+  static getAllSpecialties() {
+    return http.get("/specialty");
   }
+  static getSpecialtyByName(specialtyName) {
+    return http.get(`/specialty?specialty_name=${specialtyName}`);
+  }
+}
 
 export default SpecialtyDataService;

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Specialty = require("../models/specialty");
+const BasicUser = require("../models/basic_user.js");
 
 // Routes for CRUD Operations (CRUD: Create, Read, Update, Delete)
 
