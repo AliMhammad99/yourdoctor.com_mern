@@ -2,34 +2,34 @@
 
 ### Get all
 
-GET http://localhost:5000/specialty
+GET http://localhost:5000/basicUser
 
 ### Get by id
 
-GET http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+GET http://localhost:5000/basicUser/62654f2597fb64052d7af5de
 
 ### Create one
 
-POST http://localhost:5000/specialty
+POST http://localhost:5000/basicUser
 Content-Type: application/json
 
 {
- "specialty_name":"test_name"
+ "first_name":"test_name"
 }
 
 ### Update one
-PATCH http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+PATCH http://localhost:5000/basicUser/62654f2597fb64052d7af5de
 Content-Type: application/json
 
 {
-    "specialty_name":"New Name"
+    "first_name":"New Name"
 }
 
 ### Delete one
-DELETE http://localhost:5000/specialty/626b8528f04d1432012c8fc4
+DELETE http://localhost:5000/basicUser/62654f2597fb64052d7af5de
 
 ### Get Specialty by name
-GET http://localhost:5000/specialty?specialty_name=Dentist
+GET http://localhost:5000/basicUser?first_name=Marwan&phone_number=71223456
 
 ### Get All doctors
 GET http://localhost:5000/doctor
