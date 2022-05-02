@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Doctor = require("../models/doctor");
+const mongoose = require("mongoose");
 
 // Routes for CRUD Operations (CRUD: Create, Read, Update, Delete)
 
@@ -23,7 +24,7 @@ router.get("/:id", getDoctorById, async (req, res) => {
 // 3. Create one
 router.post("/", async (req, res) => {
   const doctor = new Doctor({
-    basic_user_id: "",
+    basic_user_id: req.body.basic_user_id,
     years_of_experience: req.body.years_of_experience,
     spoken_languages: req.body.spoken_languages,
     professional_biography: req.body.professional_biography,
@@ -41,6 +42,31 @@ router.post("/", async (req, res) => {
   } catch (err) {
     //status 400 means there is a problem in the user input
     res.status(400).json({ message: err.message });
+  }
+});
+
+//Aggregation with basic_user
+router.get("/aggregate_basic_user", async (req, res) => {
+  try {
+    console.log(req.query);
+    await Doctor.aggregate(
+      {
+        $lookup: {
+          from: "basic_user",
+          localField: "basic_user_id",
+          foreignField: "_id",
+          as: "basic_user_details",
+        },
+      },
+      { $unwind: "$basic_user_details" }
+    ).exec(function (err, results) {
+      console.log(err);
+      console.log(results);
+    });
+    // res.json(doctors);
+  } catch (err) {
+    // status 500 means an error occured on the server
+    res.status(500).json({ message: err.message });
   }
 });
 
