@@ -7,8 +7,11 @@ const Specialty = require("../models/specialty");
 // 1. Get specialty based on query
 router.get("/", async (req, res) => {
   try {
-    console.log(req.query);
-    const specialties = await Specialty.find(req.query);
+    // console.log("/.*" + req.query.specialty_name + "*./");
+    var specialtyNameRegex = new RegExp(req.query.specialty_name, "i");
+    const specialties = await Specialty.find({
+      specialty_name: { $regex: specialtyNameRegex },
+    });
     res.json(specialties);
   } catch (err) {
     // status 500 means an error occured on the server

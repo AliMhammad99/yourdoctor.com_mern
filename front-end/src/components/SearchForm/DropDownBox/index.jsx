@@ -28,6 +28,10 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [dropDownMenuItems, setdropDownMenuItems] = useState([]);
+  const [chipItem, setChiptItem] = useState({
+    item_id: "12312312",
+    item_name: "Item Name",
+  });
 
   //Refs
   const dropDownBoxRef = useRef();
@@ -37,7 +41,6 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
     /*Called whenever setFocused is called*/
     if (focused) {
       focusDropDownInput();
-      fetchListItems();
     } else {
       unfocusDropDownInput();
     }
@@ -60,6 +63,10 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
     };
   }, [dropDownBoxRef]);
 
+  useEffect(() => {
+    fetchListItems();
+  }, [searchKeyword]);
+
   // Functions;
   const handleFocus = () => {
     setFocused(true);
@@ -79,16 +86,15 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
     if (collection == "specialty") {
       SpecialtyDataService.getSpecialtyByName(searchKeyword)
         .then((res) => {
-          console.log(res.data);
           var menuItems = [];
           res.data.forEach((result) => {
-            console.log("result" + result);
             menuItems.push({
               item_id: result._id,
               item_name: result.specialty_name,
             });
           });
           setdropDownMenuItems(menuItems);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e);
@@ -107,16 +113,15 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
             });
           });
           setdropDownMenuItems(menuItems);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.log(e);
         });
     }
-    setIsLoading(false);
   };
   const handleSearchKeywordChange = (event) => {
     setSearchKeyword(event.target.value);
-    // fetchListItems();
   };
   return (
     <div

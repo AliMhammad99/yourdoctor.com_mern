@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./DropDownMenu.scss";
 
-function DropDownMenu({ menuItems, searchKeyword, isLoading }) {
+function DropDownMenu({ menuItems, setChipItem }) {
   // const [menuItems, setMenuItems] = useState([]);
-  console.log(menuItems);
+  // console.log(menuItems);
 
   //Functions
-  const handleItemClick = (specialty_id) => {
+  const handleItemClick = (menuItem) => {
     console.log("CLICK");
-    console.log(specialty_id);
+    console.log(menuItem);
   };
   return (
     <ul className="drop-down-menu">
@@ -18,7 +18,7 @@ function DropDownMenu({ menuItems, searchKeyword, isLoading }) {
             className="drop-down-menu-item"
             key={index}
             onClick={() => {
-              handleItemClick(menuItem.item_id);
+              handleItemClick(menuItem);
             }}
           >
             {menuItem.item_name}
