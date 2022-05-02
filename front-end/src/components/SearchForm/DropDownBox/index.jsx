@@ -6,6 +6,7 @@ import ClearButton from "../ClearButton";
 // import DropDownMenu from "../DropDownMenu";
 import "./DropDownBox.scss";
 import SpecialtyDataService from "../../../services/specialty";
+import DoctorDataService from "../../../services/doctor";
 
 //DropDownMenu Lazy import (will be imported when needed for rendering)
 //The setTimeout is only for testing purpose to simulate slow connection
@@ -21,7 +22,7 @@ import SpecialtyDataService from "../../../services/specialty";
 //This is the one that should be used really:
 const DropDownMenu = React.lazy(() => import("../DropDownMenu"));
 
-function DropDownBox({ svgIcon, hint, id }) {
+function DropDownBox({ svgIcon, hint, collection, id }) {
   //States
   const [focused, setFocused] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -75,15 +76,47 @@ function DropDownBox({ svgIcon, hint, id }) {
   };
   const fetchListItems = () => {
     setIsLoading(true);
-    SpecialtyDataService.getAllSpecialties()
-      .then((res) => {
-        // console.log(res.data);
-        setdropDownMenuItems(res.data);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    if (collection == "specialty") {
+      SpecialtyDataService.getSpecialtyByName(searchKeyword)
+        .then((res) => {
+          console.log(res.data);
+          var menuItems = [];
+          res.data.forEach((result) => {
+            console.log("result" + result);
+            menuItems.push({
+              item_id: result._id,
+              item_name: result.specialty_name,
+            });
+          });
+          setdropDownMenuItems(menuItems);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (collection == "doctor") {
+      DoctorDataService.getAllDoctors()
+        .then((res) => {
+          var menuItems = [];
+          res.data.forEach((result) => {
+            menuItems.push({
+              item_id: result.basic_user_id,
+              item_name:
+                result.basic_user_details.first_name +
+                " " +
+                result.basic_user_details.last_name,
+            });
+          });
+          setdropDownMenuItems(menuItems);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    setIsLoading(false);
+  };
+  const handleSearchKeywordChange = (event) => {
+    setSearchKeyword(event.target.value);
+    // fetchListItems();
   };
   return (
     <div
@@ -97,7 +130,7 @@ function DropDownBox({ svgIcon, hint, id }) {
         type="text"
         value={searchKeyword}
         onChange={(event) => {
-          setSearchKeyword(event.target.value);
+          handleSearchKeywordChange(event);
         }}
         placeholder={hint}
         className="drop-down-input"

@@ -18,10 +18,10 @@ function DropDownMenu({ menuItems, searchKeyword, isLoading }) {
             className="drop-down-menu-item"
             key={index}
             onClick={() => {
-              handleItemClick(menuItem._id);
+              handleItemClick(menuItem.item_id);
             }}
           >
-            {menuItem.specialty_name}
+            {menuItem.item_name}
           </li>
         );
       })}

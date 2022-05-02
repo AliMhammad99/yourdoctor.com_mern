@@ -7,6 +7,7 @@ const Specialty = require("../models/specialty");
 // 1. Get specialty based on query
 router.get("/", async (req, res) => {
   try {
+    console.log(req.query);
     const specialties = await Specialty.find(req.query);
     res.json(specialties);
   } catch (err) {

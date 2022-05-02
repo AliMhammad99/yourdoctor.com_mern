@@ -15,9 +15,9 @@ function HomeGuestFooter() {
       <YourDoctorLogo />
       <h2>Connect with Us:</h2>
       <div id="HomeGuestFooterSocialMedia">
-        <AiFillFacebook class="GuestFotterIcons" />
-        <AiFillInstagram class="GuestFotterIcons" />
-        <AiFillLinkedin class="GuestFotterIcons" />
+        <AiFillFacebook className="GuestFotterIcons" />
+        <AiFillInstagram className="GuestFotterIcons" />
+        <AiFillLinkedin className="GuestFotterIcons" />
       </div>
       <div id="HomeGuestFooterCopyright">
         <h4>Lebanese Owned & Operated</h4>

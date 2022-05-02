@@ -46,10 +46,9 @@ router.post("/", async (req, res) => {
 });
 
 //Aggregation with basic_user
-router.get("/aggregate_basic_user", async (req, res) => {
+router.get("/aggregate/basic_user", async (req, res) => {
   try {
-    console.log(req.query);
-    await Doctor.aggregate(
+    await Doctor.aggregate([
       {
         $lookup: {
           from: "basic_user",
@@ -58,12 +57,10 @@ router.get("/aggregate_basic_user", async (req, res) => {
           as: "basic_user_details",
         },
       },
-      { $unwind: "$basic_user_details" }
-    ).exec(function (err, results) {
-      console.log(err);
-      console.log(results);
+      { $unwind: "$basic_user_details" },
+    ]).exec(function (err, results) {
+      res.json(results);
     });
-    // res.json(doctors);
   } catch (err) {
     // status 500 means an error occured on the server
     res.status(500).json({ message: err.message });
