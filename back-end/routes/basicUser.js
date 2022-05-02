@@ -26,9 +26,9 @@ router.post("/", async (req, res) => {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     gender: req.body.gender,
-    date_of_birth: req.body.date_of_birth,
-    phone_number: req.body.phone_number,
-    profile_picture: req.body.profile_picture,
+    date_of_birth: Date.parse(req.body.date_of_birth),
+    phone_number: parseInt(req.body.phone_number.replace(/ /g, "")),
+    //profile_picture: req.body.profile_picture,
   });
   try {
     const newBasicUser = await basicUser.save();

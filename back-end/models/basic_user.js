@@ -8,7 +8,7 @@ const userInfo = new Schema(
     gender: String,
     date_of_birth: Date,
     phone_number: Number,
-    profile_picture: String,
+    //  profile_picture: String,
   },
   { collection: "basic_user" }
 );

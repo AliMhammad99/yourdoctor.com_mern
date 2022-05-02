@@ -1,7 +1,7 @@
 import React from "react";
 import "./SignUp.css";
 import { useState } from "react";
-import axios from "axios";
+import SignUpBasicUserCreation from "../../services/signUp";
 
 function close_icon_function() {
   document.querySelector(".sign-up-form").style.display = "none";
@@ -70,15 +70,14 @@ const SignUp = () => {
       const newRequest = {
         username: input.username,
         password: input.password,
-        firstName: input.firstName,
-        lastName: input.lastName,
+        first_name: input.firstName,
+        last_name: input.lastName,
         emailAddress: input.emailAddress,
         gender: input.gender,
-        phoneNumber: input.phoneNumber,
-        dateOfBirth: input.dateOfBirth,
+        phone_number: input.phoneNumber,
+        date_of_birth: input.dateOfBirth,
       };
-
-      axios.post("http://localhost:5000/signUp", newRequest);
+      SignUpBasicUserCreation.insertBasicUser(newRequest);
     }
   }
 
