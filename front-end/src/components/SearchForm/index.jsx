@@ -11,8 +11,16 @@ function SearchForm() {
   };
   return (
     <form id="search-form" onSubmit={handleSubmit}>
-      <DropDownBox svgIcon={<SpecialtyIcon />} hint={"Specialty"} />
-      <DropDownBox svgIcon={<DoctorIcon />} hint={"Doctor Name (optional)"} />
+      <DropDownBox
+        svgIcon={<SpecialtyIcon />}
+        hint={"Specialty"}
+        collection="specialty"
+      />
+      <DropDownBox
+        svgIcon={<DoctorIcon />}
+        hint={"Doctor Name (optional)"}
+        collection="doctor"
+      />
       <IconButton svgIcon={<SearchIcon />} id="search-button" type="submit" />
     </form>
   );

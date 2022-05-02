@@ -39,7 +39,7 @@ POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
-    "basic_user_id":,
+    "basic_user_id": "6269063b6fb7b43092238971",
     "years_of_experience": 5,
     "spoken_languages": [
       "French","English","Arabic"
@@ -59,3 +59,10 @@ Content-Type: application/json
         }
     }
 }
+
+### Get By query
+GET http://localhost:5000/doctor?years_of_experience=5&clinic.location.x=100
+
+
+### Aggregation with basic user
+GET http://localhost:5000/doctor/aggregate_basic_user
