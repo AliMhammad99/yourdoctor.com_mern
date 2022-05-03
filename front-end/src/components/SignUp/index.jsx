@@ -1,7 +1,9 @@
 import React from "react";
 import "./SignUp.css";
 import { useState } from "react";
-import SignUpBasicUserCreation from "../../services/signUp";
+import BasicUserDataService from "../../services/basicUser";
+import PatientDataService from "../../services/patient";
+import AccountDataService from "../../services/account";
 
 function close_icon_function() {
   document.querySelector(".sign-up-form").style.display = "none";
@@ -67,17 +69,36 @@ const SignUp = () => {
       alert("None of the input fields should be empty !");
     } else {
       //alert("the username is " + phoneNumber_or_emailAddress + " and the password is: " + password);
-      const newRequest = {
+
+      const newAccount = {
         username: input.username,
         password: input.password,
-        first_name: input.firstName,
-        last_name: input.lastName,
-        emailAddress: input.emailAddress,
-        gender: input.gender,
-        phone_number: input.phoneNumber,
-        date_of_birth: input.dateOfBirth,
+        email: input.emailAddress,
+        balance: "0",
+        is_activated: false,
       };
-      SignUpBasicUserCreation.insertBasicUser(newRequest);
+      //console.log(newAccount);
+
+      AccountDataService.insertAccount(newAccount).then((response) => {
+        console.log(response.data._id);
+        const newBasicUser = {
+          first_name: input.firstName,
+          last_name: input.lastName,
+          gender: input.gender,
+          phone_number: input.phoneNumber,
+          date_of_birth: input.dateOfBirth,
+          accountId: response.data._id,
+        };
+        BasicUserDataService.insertBasicUser(newBasicUser).then((response) => {
+          const newPatient = {
+            basic_user_id: response.data._id,
+            total_spent: 0,
+          };
+          PatientDataService.insertPatient(newPatient).then((response) => {
+            console.log(response);
+          });
+        });
+      });
     }
   }
 

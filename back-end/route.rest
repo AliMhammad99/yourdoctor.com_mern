@@ -14,7 +14,12 @@ POST http://localhost:5000/basicUser
 Content-Type: application/json
 
 {
- "first_name":"test_name"
+    "first_name": "carlos",
+    "last_name": "gerg",
+    "gender": "male",
+    "date_of_birth": "2011-09-01T00:00:00.000Z",
+    "phone_number": "8144 2456",
+    "profile_picture": "user.jpg"
 }
 
 ### Update one
@@ -59,3 +64,80 @@ Content-Type: application/json
         }
     }
 }
+
+
+### For the patient
+
+
+### Get all 
+
+GET http://localhost:5000/patient
+
+### Get by id
+
+GET http://localhost:5000/patient?basic_user_id=6256cae0f6d570985782ae3f
+
+### Create one
+
+POST http://localhost:5000/patient
+Content-Type: application/json
+
+{
+ "basic_user_id":"6256cae0f6d570985782ae3f",
+ "total_spent":0
+}
+
+### Update one
+PATCH http://localhost:5000/basicUser/62654f2597fb64052d7af5de
+Content-Type: application/json
+
+{
+    "first_name":"New Name"
+}
+
+### Delete one
+DELETE http://localhost:5000/basicUser/62654f2597fb64052d7af5de
+
+### Get Specialty by name
+GET http://localhost:5000/basicUser?first_name=Marwan&phone_number=71223456
+
+
+
+
+### For the account
+
+
+### Get all
+
+GET http://localhost:5000/account
+
+### Get by id
+
+GET http://localhost:5000/account/62718057b50c3c61ec5774b4
+
+### Create one
+
+POST http://localhost:5000/account
+Content-Type: application/json
+
+{
+    "email": "cas@gmail.com",
+    "username": "gerg",
+    "password": "carlos1234",
+    "balance": "0",
+    "is_activated": false
+}
+
+### Update one
+PATCH http://localhost:5000/account/62718057b50c3c61ec5774b4
+Content-Type: application/json
+
+{
+    "email":"New email"
+}
+
+### Delete one
+DELETE http://localhost:5000/account/62718057b50c3c61ec5774b4
+
+### Get Specialty by name
+GET http://localhost:5000/account?username=ger

@@ -1,9 +1,10 @@
 import http from "../http-common";
 
-class SignUpDataService {
+class BasicUserDataService {
   static insertBasicUser(BasicUserInfos) {
+    console.log("basic service");
     return http.post("/basicUser", BasicUserInfos);
   }
 }
 
-export default SignUpDataService;
+export default BasicUserDataService;

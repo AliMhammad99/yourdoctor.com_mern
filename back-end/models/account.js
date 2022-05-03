@@ -4,12 +4,9 @@ const userInfo = new Schema(
   {
     email: String,
     username: String,
-    password_salt: String,
-    password_hash: String,
+    password: String,
     balance: Number,
     is_activated: Boolean,
-    user_id: { type: Schema.Types.ObjectId, ref: "basic_user" },
-    notifications: [{ type: Schema.Types.ObjectId, ref: "notification" }],
   },
   { collection: "account", timestamps: { createdAt: "creation_date" } }
 );
