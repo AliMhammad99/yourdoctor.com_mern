@@ -44,7 +44,7 @@ POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
-    "basic_user_id":,
+    "basic_user_id": "6269063b6fb7b43092238971",
     "years_of_experience": 5,
     "spoken_languages": [
       "French","English","Arabic"
@@ -141,3 +141,14 @@ DELETE http://localhost:5000/account/62718057b50c3c61ec5774b4
 
 ### Get Specialty by name
 GET http://localhost:5000/account?username=ger
+
+### Get By query
+GET http://localhost:5000/doctor?years_of_experience=5&clinic.location.x=100
+
+
+### Aggregation with basic user
+GET http://localhost:5000/doctor/aggregate/basic_user
+
+### Get specialty by name
+GET http://localhost:5000/specialty?specialty_name=den
+

@@ -8,8 +8,8 @@ const userInfo = new Schema(
     gender: String,
     date_of_birth: Date,
     phone_number: Number,
-    // profile_picture: String,
     accountId: { type: Schema.Types.ObjectId, ref: "account" },
+    profile_picture: { type: String, default: "user.jpg" },
   },
   { collection: "basic_user" }
 );
