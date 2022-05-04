@@ -147,7 +147,7 @@ GET http://localhost:5000/doctor?years_of_experience=5&clinic.location.x=100
 
 
 ### Aggregation with basic user
-GET http://localhost:5000/doctor/aggregate/basic_user
+GET http://localhost:5000/doctor/aggregate/basic_user?doctor_name=ad
 
 ### Get specialty by name
 GET http://localhost:5000/specialty?specialty_name=den

@@ -48,6 +48,7 @@ router.post("/", async (req, res) => {
 //Aggregation with basic_user
 router.get("/aggregate/basic_user", async (req, res) => {
   try {
+    var doctorNameRegex = new RegExp(req.query.doctor_name, "i");
     await Doctor.aggregate([
       {
         $lookup: {
@@ -55,6 +56,22 @@ router.get("/aggregate/basic_user", async (req, res) => {
           localField: "basic_user_id",
           foreignField: "_id",
           as: "basic_user_details",
+          pipeline: [
+            {
+              $addFields: {
+                full_name: {
+                  $concat: ["$first_name", " ", "$last_name"],
+                },
+              },
+            },
+            {
+              $match: {
+                full_name: {
+                  $regex: doctorNameRegex,
+                },
+              },
+            },
+          ],
         },
       },
       { $unwind: "$basic_user_details" },

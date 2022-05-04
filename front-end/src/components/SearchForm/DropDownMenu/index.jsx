@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./DropDownMenu.scss";
 
-function DropDownMenu({ menuItems, setChipItem }) {
+function DropDownMenu({ menuItems, menuTitle, setChipItem }) {
   // const [menuItems, setMenuItems] = useState([]);
   // console.log(menuItems);
 
@@ -12,6 +12,7 @@ function DropDownMenu({ menuItems, setChipItem }) {
   };
   return (
     <ul className="drop-down-menu">
+      <h2>{menuItems.length === 0 ? "No Results" : menuTitle}</h2>
       {menuItems.map((menuItem, index) => {
         return (
           <li

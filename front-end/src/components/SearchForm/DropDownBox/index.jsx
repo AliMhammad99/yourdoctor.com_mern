@@ -1,9 +1,9 @@
 import React from "react";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
+import Chip from "@mui/material/Chip";
 import LoadingSpinner from "../LoadingSpinner";
 import ClearButton from "../ClearButton";
-// import DropDownMenu from "../DropDownMenu";
 import "./DropDownBox.scss";
 import SpecialtyDataService from "../../../services/specialty";
 import DoctorDataService from "../../../services/doctor";
@@ -100,7 +100,7 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
           console.log(e);
         });
     } else if (collection == "doctor") {
-      DoctorDataService.getAllDoctors()
+      DoctorDataService.getDoctorByName(searchKeyword)
         .then((res) => {
           var menuItems = [];
           res.data.forEach((result) => {
@@ -140,10 +140,20 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
         placeholder={hint}
         className="drop-down-input"
       />
+      <Chip label="Chip Filled" />
       <Suspense fallback={<LoadingSpinner />}>
         {
           //Render DropDownMenu only on focus
-          focused && <DropDownMenu menuItems={dropDownMenuItems} />
+          focused && (
+            <DropDownMenu
+              menuItems={dropDownMenuItems}
+              menuTitle={
+                searchKeyword
+                  ? "Search results for '" + searchKeyword + "'"
+                  : "All results"
+              }
+            />
+          )
         }
       </Suspense>
       {isLoading && <LoadingSpinner />}
