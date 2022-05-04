@@ -7,7 +7,7 @@ import ClearButton from "../ClearButton";
 import "./DropDownBox.scss";
 import SpecialtyDataService from "../../../services/specialty";
 import DoctorDataService from "../../../services/doctor";
-
+import Snackbar from "@mui/material/Snackbar";
 //DropDownMenu Lazy import (will be imported when needed for rendering)
 //The setTimeout is only for testing purpose to simulate slow connection
 // const DropDownMenu = React.lazy(() =>
@@ -28,9 +28,9 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [dropDownMenuItems, setdropDownMenuItems] = useState([]);
-  const [chipItem, setChiptItem] = useState({
-    item_id: "12312312",
-    item_name: "Item Name",
+  const [chipItem, setChipItem] = useState({
+    // item_id: "12312312",
+    // item_name: "Item Name",
   });
 
   //Refs
@@ -73,13 +73,16 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
     focusDropDownInput();
   };
   const focusDropDownInput = () => {
-    dropDownBoxRef.current.querySelector(".drop-down-input").focus();
+    dropDownBoxRef.current.querySelector(".drop-down-input")?.focus();
   };
   const unfocusDropDownInput = () => {
-    dropDownBoxRef.current.querySelector(".drop-down-input").blur();
+    // const textInput =
+    dropDownBoxRef.current.querySelector(".drop-down-input")?.blur();
   };
   const clearSearchKeyword = () => {
     setSearchKeyword("");
+    setChipItem({});
+    focusDropDownInput();
   };
   const fetchListItems = () => {
     setIsLoading(true);
@@ -130,21 +133,26 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
       id={id}
       ref={dropDownBoxRef}
     >
+      {" "}
+      <Snackbar open={true} autoHideDuration={6000} message="Note archived" />
       {svgIcon}
-      <input
-        type="text"
-        value={searchKeyword}
-        onChange={(event) => {
-          handleSearchKeywordChange(event);
-        }}
-        placeholder={hint}
-        className="drop-down-input"
-      />
-      <Chip label="Chip Filled" />
+      {Object.keys(chipItem).length === 0 ? (
+        <input
+          type="text"
+          value={searchKeyword}
+          onChange={(event) => {
+            handleSearchKeywordChange(event);
+          }}
+          placeholder={hint}
+          className="drop-down-input"
+        />
+      ) : (
+        <Chip label={chipItem.item_name} />
+      )}
       <Suspense fallback={<LoadingSpinner />}>
         {
           //Render DropDownMenu only on focus
-          focused && (
+          focused && Object.keys(chipItem).length === 0 && (
             <DropDownMenu
               menuItems={dropDownMenuItems}
               menuTitle={
@@ -152,12 +160,13 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
                   ? "Search results for '" + searchKeyword + "'"
                   : "All results"
               }
+              setChipItem={setChipItem}
             />
           )
         }
       </Suspense>
       {isLoading && <LoadingSpinner />}
-      {searchKeyword && !isLoading && (
+      {((searchKeyword && !isLoading) || Object.keys(chipItem).length != 0) && (
         <ClearButton onClick={clearSearchKeyword} />
       )}
     </div>

@@ -4,6 +4,7 @@
   width: 100%;
   box-sizing: border-box;
   justify-content: flex-start;
+  align-items: center;
   border-radius: var(--border-radius-full-rounded);
   box-shadow: 0 0 6px 0 var(--light-gray);
   padding: 2.5% 5%;
@@ -29,6 +30,15 @@
     box-shadow: 0 0 6px 0 var(--light-blue);
     > svg {
       fill: var(--light-blue);
+    }
+  }
+  .MuiChip-root {
+    background-color: var(--dark-blue);
+    // position: absolute;
+    span {
+      color: white;
+      font-family: var(--our-font-bold);
+      font-size: 0.9rem;
     }
   }
 }
