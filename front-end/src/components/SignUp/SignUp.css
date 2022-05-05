@@ -31,6 +31,24 @@
   margin-top: 1vw;
   color: var(--dark-gray);
 }
+
+.snack{
+  z-index: 10000 !important;
+}
+
+.alert{
+  z-index: 10000 !important;
+}
+
+.alert div{
+  color: rgb(255, 255, 255) !important;
+  z-index: 10000 !important;
+}
+
+.alert svg{
+  fill: rgb(255, 255, 255) !important;
+}
+
 .back-div .rows {
   width: 90%;
   display: flex;
