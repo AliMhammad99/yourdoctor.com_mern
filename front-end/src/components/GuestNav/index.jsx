@@ -6,7 +6,7 @@ import "./GuestNav.scss";
 //The nav to be displayed for guests
 function GuestNav() {
   //Buttons can be changed here (edit, add, or remove)
-  const navButtonsNames = ["Search", "Login", "Signup"];
+  const navButtonsNames = ["Login", "Signup"];
 
   return (
     <header className="header">

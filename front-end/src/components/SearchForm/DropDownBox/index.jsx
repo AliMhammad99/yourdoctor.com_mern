@@ -7,7 +7,7 @@ import ClearButton from "../ClearButton";
 import "./DropDownBox.scss";
 import SpecialtyDataService from "../../../services/specialty";
 import DoctorDataService from "../../../services/doctor";
-import Snackbar from "@mui/material/Snackbar";
+
 //DropDownMenu Lazy import (will be imported when needed for rendering)
 //The setTimeout is only for testing purpose to simulate slow connection
 // const DropDownMenu = React.lazy(() =>
@@ -133,8 +133,6 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
       id={id}
       ref={dropDownBoxRef}
     >
-      {" "}
-      <Snackbar open={true} autoHideDuration={6000} message="Note archived" />
       {svgIcon}
       {Object.keys(chipItem).length === 0 ? (
         <input

@@ -6,9 +6,11 @@
   align-items: center;
   .nav-bar {
     ul {
-      width: 10em;
       justify-content: space-between;
       display: flex;
+      li {
+        margin-left: 1em;
+      }
     }
   }
 }
@@ -17,7 +19,9 @@
   .header {
     .nav-bar {
       ul {
-        width: 13em;
+        li {
+          margin-left: 2em;
+        }
       }
     }
   }
