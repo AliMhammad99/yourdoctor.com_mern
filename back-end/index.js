@@ -20,18 +20,21 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
-app.use(session({
-  secret: "Test Secret",
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({
-    mongoUrl: process.env.YOUR_DOCTOR_DB_URI,
-  }),
-  cookie:{
-      maxAge: 1000*60*60*24,
-  }
-}))
- 
+// Initialize session
+app.use(
+  session({
+    secret: "Test Secret",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.YOUR_DOCTOR_DB_URI,
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+
 // Start the backend server
 app.listen(port, () => {
   console.log("Server started on http://localhost:" + port);

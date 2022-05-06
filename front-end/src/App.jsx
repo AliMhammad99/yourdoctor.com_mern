@@ -1,7 +1,15 @@
+import React, { useState } from "react";
+import AuthenticationApi from "./utils/AuthenticationApi";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Loading from "./components/Loading";
-import GuestNav from "./components/GuestNav";
+import Guest from "./pages/Guest";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Component } from "react";
 
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
@@ -15,17 +23,46 @@ AXIOS: https://www.digitalocean.com/community/tutorials/react-axios-react
 */
 //This components is the parent of all other components
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
   return (
     <>
       <Loading />
-      <Router>
-        <GuestNav />
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-        </Routes>
-      </Router>
+      <AuthenticationApi.Provider value={{ authenticated, setAuthenticated }}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              exact
+              element={<RouteRegisteration component={Guest} />}
+            />
+            <Route
+              exact
+              path="/home"
+              element={<RouteProtected component={Home} />}
+            />
+            <Route exact path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Router>
+      </AuthenticationApi.Provider>
     </>
   );
 }
+
+const RouteRegisteration = ({ component: Component, ...rest }) => {
+  // return <Route {...rest} render={(props) => <Component {...props} />} />;
+  const authenticationApi = React.useContext(AuthenticationApi);
+  console.log(authenticationApi);
+  return authenticationApi.authenticated ? (
+    <Navigate to="/home" />
+  ) : (
+    <Component />
+  );
+};
+
+const RouteProtected = ({ component: Component, ...rest }) => {
+  // return <Route {...rest} render={(props) => <Component {...props} />} />;
+  const authenticationApi = React.useContext(AuthenticationApi);
+  return authenticationApi.authenticated ? <Component /> : <Navigate to="/" />;
+};
 
 export default App;
