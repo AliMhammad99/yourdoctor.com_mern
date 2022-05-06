@@ -1,10 +1,10 @@
 import React from "react";
 import "./SignUp.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import BasicUserDataService from "../../services/basicUser";
 import PatientDataService from "../../services/patient";
 import AccountDataService from "../../services/account";
-import Success from "./success";
+import GlobalStates from "../../utils/GlobalStates";
 
 function close_icon_function() {
   document.querySelector(".sign-up-form").style.display = "none";
@@ -31,8 +31,7 @@ const SignUp = () => {
     gender: "",
     dateOfBirth: "",
   });
-
-  const [SuccessSnackbar, setSuccessSnackbar] = useState(false);
+  const globalStates = useContext(GlobalStates);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -100,8 +99,10 @@ const SignUp = () => {
             total_spent: 0,
           };
           PatientDataService.insertPatient(newPatient).then((response) => {
-            console.log(response);
-            setSuccessSnackbar(true);
+            globalStates.showSnackBar(
+              "Account created successfully",
+              "success"
+            );
           });
         });
       });
@@ -121,7 +122,6 @@ const SignUp = () => {
 
   return (
     <>
-      {SuccessSnackbar ? <Success /> : null}
       <div className="back-div">
         <div className="sign-up-form">
           <svg

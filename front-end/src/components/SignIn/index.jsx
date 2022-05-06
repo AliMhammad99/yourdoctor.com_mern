@@ -1,7 +1,7 @@
 import React from "react";
 import "./SignIn.css";
-import { useState } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
+import GlobalStates from "../../utils/GlobalStates";
 
 function close_icon_function() {
   document.querySelector(".sign-in-form").style.display = "none";
@@ -21,26 +21,29 @@ const SignIn = () => {
     password: "",
   });
 
+  const globalStates = useContext(GlobalStates);
+
   function handleSubmit(event) {
     event.preventDefault();
     //  let chk = document.getElementById("checkbox_id");
     if (input.phoneNumber_or_emailAddress === "") {
-      alert("the phone number input cannot be empty !");
+      globalStates.showSnackBar("Please enter email.", "error");
     } else if (input.password === "") {
-      alert("the password cannot be empty !");
+      globalStates.showSnackBar("Please enter password.", "error");
     }
     // else if(!chk.checked){
     //   alert("checkbox not checked!");
     // }
     else {
       //alert("the username is " + phoneNumber_or_emailAddress + " and the password is: " + password);
-      event.preventDefault();
-      const newRequest = {
-        phoneNumber_or_emailAddress: input.phoneNumber_or_emailAddress,
-        password: input.password,
-      };
+      // event.preventDefault();
+      // const newRequest = {
+      //   phoneNumber_or_emailAddress: input.phoneNumber_or_emailAddress,
+      //   password: input.password,
+      // };
+      // axios.post("http://localhost:5000/post", newRequest);
 
-      axios.post("http://localhost:5000/post", newRequest);
+      globalStates.setAuthenticated(true);
     }
   }
 

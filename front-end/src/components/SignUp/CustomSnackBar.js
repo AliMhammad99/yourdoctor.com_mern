@@ -1,43 +1,39 @@
 import * as React from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import { useContext } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import "./SignUp.css";
+import GlobalStates from "../../utils/GlobalStates";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 export default function CustomizedSnackbars() {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const globalStates = useContext(GlobalStates);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
-    setOpen(false);
+    globalStates.setSnackBar((previousState) => {
+      return { ...previousState, open: false };
+    });
   };
-
   return (
     <Snackbar
-      open={open}
+      open={globalStates.snackBar.open}
       className="snack"
-      autoHideDuration={4000}
+      autoHideDuration={3000}
       onClose={handleClose}
     >
       <Alert
         onClose={handleClose}
         className="alert"
-        severity="success"
+        severity={globalStates.snackBar.severity}
         sx={{ width: "120%" }}
       >
-        Account Succefully Created!
+        {globalStates.snackBar.message}
       </Alert>
     </Snackbar>
   );

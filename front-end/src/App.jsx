@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthenticationApi from "./utils/AuthenticationApi";
+import GlobalStates from "./utils/GlobalStates";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,7 +10,7 @@ import Loading from "./components/Loading";
 import Guest from "./pages/Guest";
 import Home from "./pages/Home";
 import { Component } from "react";
-
+import CustomSnackBar from "./components/SignUp/CustomSnackBar";
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
 Code splitting: https://reactjs.org/docs/code-splitting.html
@@ -24,10 +24,34 @@ AXIOS: https://www.digitalocean.com/community/tutorials/react-axios-react
 //This components is the parent of all other components
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [snackBar, setSnackBar] = useState({
+    open: false,
+    message: "",
+    severity: "error",
+  });
+  const showSnackBar = (message, severity) => {
+    setSnackBar((previousState) => {
+      return {
+        ...previousState,
+        message: message,
+        severity: severity,
+        open: true,
+      };
+    });
+  };
   return (
     <>
       <Loading />
-      <AuthenticationApi.Provider value={{ authenticated, setAuthenticated }}>
+      <GlobalStates.Provider
+        value={{
+          authenticated,
+          setAuthenticated,
+          snackBar,
+          setSnackBar,
+          showSnackBar,
+        }}
+      >
+        <CustomSnackBar />
         <Router>
           <Routes>
             <Route
@@ -43,26 +67,21 @@ function App() {
             <Route exact path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
-      </AuthenticationApi.Provider>
+      </GlobalStates.Provider>
     </>
   );
 }
 
 const RouteRegisteration = ({ component: Component, ...rest }) => {
   // return <Route {...rest} render={(props) => <Component {...props} />} />;
-  const authenticationApi = React.useContext(AuthenticationApi);
-  console.log(authenticationApi);
-  return authenticationApi.authenticated ? (
-    <Navigate to="/home" />
-  ) : (
-    <Component />
-  );
+  const globalStates = React.useContext(GlobalStates);
+  return globalStates.authenticated ? <Navigate to="/home" /> : <Component />;
 };
 
 const RouteProtected = ({ component: Component, ...rest }) => {
   // return <Route {...rest} render={(props) => <Component {...props} />} />;
-  const authenticationApi = React.useContext(AuthenticationApi);
-  return authenticationApi.authenticated ? <Component /> : <Navigate to="/" />;
+  const globalStates = React.useContext(GlobalStates);
+  return globalStates.authenticated ? <Component /> : <Navigate to="/" />;
 };
 
 export default App;
