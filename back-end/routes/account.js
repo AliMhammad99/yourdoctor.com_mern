@@ -30,7 +30,6 @@ router.post("/", async (req, res) => {
     is_activated: req.body.is_activated,
   });
   try {
-    console.log(account);
     const newAccount = await account.save();
     //status 201 means everything was successful
     /*default for successful is 200,
@@ -79,6 +78,26 @@ router.delete("/:id", getAccountById, async (req, res) => {
   }
 });
 
+// Login API
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const account = await Account.findAccount(email, password);
+  if (account) {
+    req.session.accountId = account._id;
+    res.json({
+      authenticated: true,
+      message: "You are successfully logged in.",
+    });
+  } else {
+    res.json({ authenticated: false, message: "Incorrect email or password." });
+  }
+});
+router.get("/is/logged_in", (req, res) => {
+  if (req.session.accountId) {
+    return res.json({ authenticated: true, message: "You are logged in." });
+  }
+  return res.json({ authenticated: false, message: "You are not logged in." });
+});
 async function getAccountById(req, res, next) {
   /* This function is used to check if a specialty exists with the given id*/
   /* This function is needed a lot in our operations above,
