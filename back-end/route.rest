@@ -152,3 +152,14 @@ GET http://localhost:5000/doctor/aggregate/basic_user?doctor_name=Ali&specialty_
 ### Get specialty by name
 GET http://localhost:5000/specialty?specialty_name=den
 
+### Login
+POST http://localhost:5000/account/login
+Content-Type: application/json
+
+{
+    "email" : "carlos@gmail.com",
+    "password":"carlos1234"
+}
+
+### 
+GET http://localhost:5000/account/is/logged_in

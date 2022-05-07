@@ -1,8 +1,16 @@
+import React, { useState } from "react";
+import GlobalStates from "./utils/GlobalStates";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Loading from "./components/Loading";
-import GuestNav from "./components/GuestNav";
+import Guest from "./pages/Guest";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { Component } from "react";
+import CustomSnackBar from "./components/SignUp/CustomSnackBar";
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
 Code splitting: https://reactjs.org/docs/code-splitting.html
@@ -15,17 +23,65 @@ AXIOS: https://www.digitalocean.com/community/tutorials/react-axios-react
 */
 //This components is the parent of all other components
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [snackBar, setSnackBar] = useState({
+    open: false,
+    message: "",
+    severity: "error",
+  });
+  const showSnackBar = (message, severity) => {
+    setSnackBar((previousState) => {
+      return {
+        ...previousState,
+        message: message,
+        severity: severity,
+        open: true,
+      };
+    });
+  };
   return (
     <>
       <Loading />
-      <Router>
-        <GuestNav />
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-        </Routes>
-      </Router>
+      <GlobalStates.Provider
+        value={{
+          authenticated,
+          setAuthenticated,
+          snackBar,
+          setSnackBar,
+          showSnackBar,
+        }}
+      >
+        <CustomSnackBar />
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              exact
+              element={<RouteRegisteration component={Guest} />}
+            />
+            <Route
+              exact
+              path="/home"
+              element={<RouteProtected component={Home} />}
+            />
+            <Route exact path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Router>
+      </GlobalStates.Provider>
     </>
   );
 }
+
+const RouteRegisteration = ({ component: Component, ...rest }) => {
+  // return <Route {...rest} render={(props) => <Component {...props} />} />;
+  const globalStates = React.useContext(GlobalStates);
+  return globalStates.authenticated ? <Navigate to="/home" /> : <Component />;
+};
+
+const RouteProtected = ({ component: Component, ...rest }) => {
+  // return <Route {...rest} render={(props) => <Component {...props} />} />;
+  const globalStates = React.useContext(GlobalStates);
+  return globalStates.authenticated ? <Component /> : <Navigate to="/" />;
+};
 
 export default App;

@@ -7,7 +7,7 @@ const patientRouter = require("./routes/patient");
 const AccountRouter = require("./routes/account");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-require("dotenv").config()
+require("dotenv").config();
 /* This module is responsible for creating and manipulating
 our server */
 const app = express();
@@ -15,17 +15,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(session({
+app.use(
+  session({
     secret: "Test Secret",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.YOUR_DOCTOR_DB_URI,
     }),
-    cookie:{
-        maxAge: 1000*60*60*24,
-    }
-  }))
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
 //Routes and APIs
 // app.use("/test", test);
 app.use("/basicUser", basicUserRouter);
