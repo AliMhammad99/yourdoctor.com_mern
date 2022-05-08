@@ -1,6 +1,6 @@
 import React from "react";
 import "./SignUp.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import BasicUserDataService from "../../services/basicUser";
 import PatientDataService from "../../services/patient";
 import AccountDataService from "../../services/account";
@@ -31,34 +31,19 @@ const SignUp = () => {
     gender: "",
     dateOfBirth: "",
   });
+
+  const checkBoxRef = useRef();
+
   const globalStates = useContext(GlobalStates);
 
   function handleSubmit(event) {
     event.preventDefault();
-    //  let chk = document.getElementById("checkbox_id");
-    // alert(
-    // input.username +
-    //   "  " +
-    //   input.password +
-    //   "  " +
-    //   input.reEnterPassword +
-    //   "  " +
-    //   input.firstName +
-    //   "  " +
-    //   input.lastName +
-    //   "  " +
-    //   input.emailAddress +
-    //   "  " +
-    //   input.gender +
-    //   "  " +
-    //   input.phoneNumber +
-    //   "  " +
-    //   input.dateOfBirth
-    // );
-    // <CustomizedSnackbars />;
 
     if (input.password !== input.reEnterPassword) {
-      alert("The two entered passwords are not the same!");
+      globalStates.showSnackBar(
+        "The two entered passwords are not the same!",
+        "error"
+      );
     } else if (
       input.username === "" ||
       input.password === "" ||
@@ -70,7 +55,16 @@ const SignUp = () => {
       input.phoneNumber === "" ||
       input.dateOfBirth === ""
     ) {
-      alert("None of the input fields should be empty !");
+      globalStates.showSnackBar(
+        "None of the input fields should be empty !",
+        "error"
+      );
+      //alert("None of the input fields should be empty !");
+    } else if (!checkBoxRef.current.checked) {
+      globalStates.showSnackBar(
+        "Please agree to Terms and Conditions in order to Continue!",
+        "warning"
+      );
     } else {
       //alert("the username is " + phoneNumber_or_emailAddress + " and the password is: " + password);
 
@@ -225,7 +219,7 @@ const SignUp = () => {
 
             <label id="agree_txt">
               <div id="checkbox_b">
-                <input type="checkbox" />
+                <input type="checkbox" ref={checkBoxRef} />
               </div>
               <div id="checkbox_t">
                 I agree to <a href="#">Terms & Conditions</a> , and to

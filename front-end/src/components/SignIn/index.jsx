@@ -85,7 +85,7 @@ const SignIn = () => {
 
           <form className="rows" onSubmit={handleSubmit}>
             <p className="labels" id="em_margin">
-              Email or Mobile
+              Email
             </p>
             <input
               type="text"
