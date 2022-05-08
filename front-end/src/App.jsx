@@ -23,7 +23,7 @@ AXIOS: https://www.digitalocean.com/community/tutorials/react-axios-react
 */
 //This components is the parent of all other components
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   const [snackBar, setSnackBar] = useState({
     open: false,
     message: "",

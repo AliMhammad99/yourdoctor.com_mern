@@ -24,7 +24,7 @@ const pages = [
   "Contact",
   "FAQ",
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Notifications", "Logout"];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -106,8 +106,14 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, border: "2px solid red" }}
+              >
+                <Avatar
+                  alt="memy Sharp"
+                  src="../../assets/homeGuestSection2.png"
+                />
               </IconButton>
             </Tooltip>
             <Menu
