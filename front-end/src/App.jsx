@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GlobalStates from "./utils/GlobalStates";
 import {
   BrowserRouter as Router,
@@ -9,8 +9,9 @@ import {
 import Loading from "./components/Loading";
 import Guest from "./pages/Guest";
 import Home from "./pages/Home";
-import { Component } from "react";
 import CustomSnackBar from "./components/SignUp/CustomSnackBar";
+import AccountDataService from "../src/services/account";
+
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
 Code splitting: https://reactjs.org/docs/code-splitting.html
@@ -23,7 +24,7 @@ AXIOS: https://www.digitalocean.com/community/tutorials/react-axios-react
 */
 //This components is the parent of all other components
 function App() {
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   const [snackBar, setSnackBar] = useState({
     open: false,
     message: "",
@@ -39,9 +40,18 @@ function App() {
       };
     });
   };
+
+  const readSession = () => {
+    AccountDataService.isLoggedIn().then((res) => {
+      setAuthenticated(res.data.authenticated);
+    });
+  };
+
+  useEffect(() => {
+    readSession();
+  }, []);
   return (
     <>
-      <Loading />
       <GlobalStates.Provider
         value={{
           authenticated,
@@ -51,6 +61,7 @@ function App() {
           showSnackBar,
         }}
       >
+        {/* <Loading /> */}
         <CustomSnackBar />
         <Router>
           <Routes>

@@ -28,7 +28,13 @@ function Loading() {
   useEffect(() => {
     //This useEffect will be called once and on first render only
     window.addEventListener("load", loadingComplete);
-  }, []);
+    if (document.readyState === "complete") {
+      loadingComplete();
+    }
+    return () => {
+      window.removeEventListener("load", loadingComplete);
+    };
+  }, [loadingSection]);
   return (
     <section id="loading" ref={loadingSection}>
       <LoadingIcon />

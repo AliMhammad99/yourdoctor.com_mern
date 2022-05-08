@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,6 +15,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import YourDoctorLogo from "../YourDoctorLogo";
+import AccountDataService from "../../services/account";
+import GlobalStates from "../../utils/GlobalStates";
 import "./styles.css";
 
 const pages = [
@@ -24,9 +27,10 @@ const pages = [
   "Contact",
   "FAQ",
 ];
-const settings = ["Profile", "Account", "Notifications", "Logout"];
 
 const ResponsiveAppBar = () => {
+  const globalStates = useContext(GlobalStates);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,6 +49,17 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogOut = () => {
+    AccountDataService.logOut().then((res) => {
+      globalStates.setAuthenticated(res.data.authenticated);
+    });
+  };
+  const settings = [
+    { name: "Profile", function: handleCloseUserMenu },
+    { name: "Account", function: handleCloseUserMenu },
+    { name: "Notifications", function: handleCloseUserMenu },
+    { name: "Logout", function: handleLogOut },
+  ];
   return (
     <AppBar position="static" className="bgColor">
       <Container maxWidth="xl">
@@ -133,8 +148,8 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.name} onClick={setting.function}>
+                  <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>

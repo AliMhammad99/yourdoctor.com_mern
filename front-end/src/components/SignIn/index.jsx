@@ -43,10 +43,17 @@ const SignIn = () => {
       //   password: input.password,
       // };
       // axios.post("http://localhost:5000/post", newRequest);
-      AccountDataService.logIn(input).then((result) => {
-        console.log(result);
-      });
-      // globalStates.setAuthenticated(true);
+      AccountDataService.logIn(input)
+        .then((result) => {
+          if (result.data.authenticated) {
+            globalStates.setAuthenticated(true);
+          } else {
+            globalStates.showSnackBar(result.data.message, "error");
+          }
+        })
+        .catch((error) => {
+          globalStates.showSnackBar(error, "error");
+        });
     }
   }
 

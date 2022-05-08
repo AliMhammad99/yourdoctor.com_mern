@@ -79,11 +79,12 @@ router.delete("/:id", getAccountById, async (req, res) => {
 });
 
 // Login API
-router.post("/login", async (req, res) => {
+router.post("/authentication/login", async (req, res) => {
   const { email, password } = req.body;
   const account = await Account.findAccount(email, password);
   if (account) {
     req.session.accountId = account._id;
+    console.log(req.session);
     res.json({
       authenticated: true,
       message: "You are successfully logged in.",
@@ -92,11 +93,17 @@ router.post("/login", async (req, res) => {
     res.json({ authenticated: false, message: "Incorrect email or password." });
   }
 });
-router.get("/is/logged_in", (req, res) => {
+router.get("/authentication/is_logged_in", (req, res) => {
   if (req.session.accountId) {
     return res.json({ authenticated: true, message: "You are logged in." });
   }
   return res.json({ authenticated: false, message: "You are not logged in." });
+});
+router.get("/authentication/logout", (req, res) => {
+  req.session.destroy();
+  res.json({
+    authenticated: false,
+  });
 });
 async function getAccountById(req, res, next) {
   /* This function is used to check if a specialty exists with the given id*/
