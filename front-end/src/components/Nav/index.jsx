@@ -17,15 +17,16 @@ import MenuItem from "@mui/material/MenuItem";
 import YourDoctorLogo from "../YourDoctorLogo";
 import AccountDataService from "../../services/account";
 import GlobalStates from "../../utils/GlobalStates";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 const pages = [
-  "Find Your Doctor",
-  "Chat",
-  "Calendar",
-  "About",
-  "Contact",
-  "FAQ",
+  { name: "Find Your Doctor", url: "/findyourdoctor" },
+  { name: "Chat", url: "/chat" },
+  { name: "Calendar", url: "/calendar" },
+  { name: "About", url: "/about" },
+  { name: "Contact", url: "/contact" },
+  { name: "FAQ", url: "/faq" },
 ];
 
 const ResponsiveAppBar = () => {
@@ -66,7 +67,6 @@ const ResponsiveAppBar = () => {
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />*/}
           <YourDoctorLogo />
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -96,10 +96,12 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map((page, index) => (
+                <Link to={page.url} key={index}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -108,14 +110,12 @@ const ResponsiveAppBar = () => {
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             className="btn"
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                className="nav_buttons"
-              >
-                {page}
-              </Button>
+            {pages.map((page, index) => (
+              <Link to={page.url} key={index}>
+                <Button onClick={handleCloseNavMenu} className="nav_buttons">
+                  {page.name}
+                </Button>
+              </Link>
             ))}
           </Box>
 

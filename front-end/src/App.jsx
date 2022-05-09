@@ -11,6 +11,7 @@ import Guest from "./pages/Guest";
 import Home from "./pages/Home";
 import CustomSnackBar from "./components/SignUp/CustomSnackBar";
 import AccountDataService from "../src/services/account";
+import FindYourDoctor from "./pages/FindYourDoctor";
 
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
@@ -74,6 +75,11 @@ function App() {
               exact
               path="/home"
               element={<RouteProtected component={Home} />}
+            />
+            <Route
+              exact
+              path="/findyourdoctor"
+              element={<RouteProtected component={FindYourDoctor} />}
             />
             <Route exact path="*" element={<Navigate to="/" />} />
           </Routes>

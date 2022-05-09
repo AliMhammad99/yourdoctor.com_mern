@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const YourDoctorLogo = () => {
   return (
     <picture className="logo">
-      <Link to="/">
+      <Link to="/home">
         <LogoSVG />
       </Link>
     </picture>
