@@ -7,6 +7,11 @@
   .drop-down-box:first-child {
     margin-bottom: 1em;
   }
+  &.menu-below-box{
+    .drop-down-menu{
+      top: 104%;
+    }
+  }
 }
 #search-button {
   width: 100%;
@@ -31,9 +36,11 @@
       box-shadow: none;
       &:hover {
         outline: thin solid var(--light-blue);
+        z-index: 2;
       }
       &.focused {
         outline: thin solid var(--light-blue);
+        z-index: 2;
       }
     }
     .drop-down-box:first-child {

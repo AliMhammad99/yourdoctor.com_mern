@@ -5,12 +5,12 @@ import { ReactComponent as SearchIcon } from "../../assets/icon_search.svg";
 import { ReactComponent as SpecialtyIcon } from "../../assets/icon_specialty.svg";
 import { ReactComponent as DoctorIcon } from "../../assets/icon_doctor.svg";
 import "./SearchForm.scss";
-function SearchForm() {
+function SearchForm({className}) {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
   return (
-    <form id="search-form" onSubmit={handleSubmit}>
+    <form id="search-form" onSubmit={handleSubmit} className={className}>
       <DropDownBox
         svgIcon={<SpecialtyIcon />}
         hint={"Specialty"}
