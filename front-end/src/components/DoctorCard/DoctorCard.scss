@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1em;
+  transition: background-color var(--hover-transition-time);
   > .left-div {
     display: flex;
     > .doctor-profile-picture {
@@ -65,6 +66,15 @@
     align-items: center;
     > svg {
       fill: var(--light-gray);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    > .arrow-forward {
+      > svg {
+        fill: var(--light-blue);
+      }
     }
   }
 }
