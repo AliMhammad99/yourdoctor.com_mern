@@ -5,6 +5,7 @@ const doctorRouter = require("./routes/doctor.js");
 const specialtyRouter = require("./routes/specialty.js");
 const patientRouter = require("./routes/patient");
 const AccountRouter = require("./routes/account");
+const ImageUploadRouter = require("./routes/ImageUploadRouter");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
@@ -15,12 +16,13 @@ const app = express();
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "PATCH"],
     credentials: true,
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   session({
     secret: "Test Secret",
@@ -41,6 +43,7 @@ app.use("/patient", patientRouter);
 app.use("/doctor", doctorRouter);
 app.use("/specialty", specialtyRouter);
 app.use("/account", AccountRouter);
+app.use("/imageUpload", ImageUploadRouter);
 
 app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
