@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import YourDoctorLogo from "../YourDoctorLogo";
 import AccountDataService from "../../services/account";
+import BasicUserDataService from "../../services/basicUser";
 import GlobalStates from "../../utils/GlobalStates";
 import { Link } from "react-router-dom";
 import "./styles.css";
@@ -34,6 +35,7 @@ const ResponsiveAppBar = () => {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [imageLink, setImageLink] = React.useState("");
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -55,6 +57,18 @@ const ResponsiveAppBar = () => {
       globalStates.setAuthenticated(res.data.authenticated);
     });
   };
+
+  function getBasicUserInfos() {
+    BasicUserDataService.getBasicUser().then((res) => {
+      console.log(res.data.profile_picture);
+      setImageLink(res.data.profile_picture);
+    });
+  }
+
+  useEffect(() => {
+    getBasicUserInfos();
+  }, []);
+
   const settings = [
     { name: "Profile", function: handleCloseUserMenu },
     { name: "Account", function: handleCloseUserMenu },
@@ -121,11 +135,12 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton
-                onClick={handleOpenUserMenu}
-                sx={{ p: 0, border: "2px solid red" }}
-              >
-                <Avatar src="../../assets/homeGuestSection2.png" />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {imageLink === "user.jpg" ? (
+                  <Avatar />
+                ) : (
+                  <Avatar src={imageLink} />
+                )}
               </IconButton>
             </Tooltip>
             <Menu

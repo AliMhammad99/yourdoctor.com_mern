@@ -4,14 +4,14 @@ import HomeGuestSection3 from "../components/HomeGuestSection3";
 import HomeGuestFooter from "../components/HomeGuestFooter";
 import Nav from "../components/Nav";
 import Loading from "../components/Loading";
+import UploadPhoto from "../components/UploadPhoto";
 function Home() {
   return (
     <>
       <Loading />
       <Nav />
       <HeroSection />
-      <HomeGuestSection2 />
-      <HomeGuestSection3 />
+      <UploadPhoto />
       <HomeGuestFooter />
     </>
   );

@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     gender: req.body.gender,
     date_of_birth: Date.parse(req.body.date_of_birth),
     phone_number: parseInt(req.body.phone_number.replace(/ /g, "")),
-    //profile_picture: req.body.profile_picture,
+    profile_picture: req.body.profile_picture,
     accountId: req.body.accountId,
   });
   try {
@@ -73,6 +73,31 @@ router.patch("/:id", getBasicUserById, async (req, res) => {
   }
 });
 
+// 2. Get one BasicUser by id
+router.get("/infos/accountId", getBasicUserBySessionId, async (req, res) => {
+  res.send(res.basicUser);
+});
+
+router.patch(
+  "/profilePicture/add",
+  getBasicUserBySessionId,
+  async (req, res) => {
+    if (req.body.profile_picture != null) {
+      res.basicUser.profile_picture = req.body.profile_picture;
+      console.log(res.basicUser.profile_picture);
+      console.log(req.body.profile_picture);
+      console.log(req.session.accountId);
+    }
+    // Same if block for other fields if there is more than one field
+    try {
+      const basicUser = await res.basicUser.save();
+      res.json(basicUser);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
+);
+
 // 5. Delete one BasicUser
 router.delete("/:id", getBasicUserById, async (req, res) => {
   try {
@@ -82,6 +107,32 @@ router.delete("/:id", getBasicUserById, async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+async function getBasicUserBySessionId(req, res, next) {
+  /* This function is used to check if a basicUser exists with the given id*/
+  /* This function is needed a lot in our operations above,
+     that's why we created this function (reduce code redundancy)*/
+  /* This function can be called on all operations that uses an id as req.params*/
+  let basicUser;
+  try {
+    basicUser = await BasicUser.findOne({ accountId: req.session.accountId });
+    // If does not exist we return error message
+    if (basicUser == null) {
+      /*status 404 means we are not able to find an object 
+        with the passed id in the database*/
+      return res.status(404).json({ message: "Cannot find specialty" });
+    }
+  } catch (err) {
+    // Server error
+    return res.status(500).json({ message: err.message });
+  }
+  // If this statement is reached => it exists, set it to result
+  res.basicUser = basicUser;
+  /* Move to the next function of middleware 
+  (the function next to the call of this function inside parameters of CRUD)
+  */
+  next();
+}
 
 async function getBasicUserById(req, res, next) {
   /* This function is used to check if a basicUser exists with the given id*/
