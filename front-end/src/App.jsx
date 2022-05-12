@@ -6,7 +6,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Loading from "./components/Loading";
 import Guest from "./pages/Guest";
 import Home from "./pages/Home";
 import CustomSnackBar from "./components/SignUp/CustomSnackBar";
