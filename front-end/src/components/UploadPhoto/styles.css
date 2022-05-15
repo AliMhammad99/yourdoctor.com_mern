@@ -1,0 +1,17 @@
+#opacity {
+    color: rgba(0, 0, 0, 0);
+  }
+  #edit_popUp_submit{
+    border: 2px solid rgb(0, 0, 0); 
+    padding: 10px 30px;
+    font-family: our-font-bold;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: var(--hover-transition-time);
+  }
+  #edit_popUp_submit:hover{
+    background-color: white;
+    border: 2px solid rgb(0, 0, 0); 
+    color: black;
+  }

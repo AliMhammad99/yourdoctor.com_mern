@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import CustomSnackBar from "./components/SignUp/CustomSnackBar";
 import AccountDataService from "../src/services/account";
 import FindYourDoctor from "./pages/FindYourDoctor";
+import EditProfilePopUp from "./components/EditProfilePopUp";
 
 /*Advanced Concepts to use:
 Components tree: https://reactjs.org/docs/thinking-in-react.html
@@ -31,6 +32,7 @@ function App() {
     message: "",
     severity: "error",
   });
+  const [editProfilePopUp, setEditProfilePopUp] = useState(false);
   const showSnackBar = (message, severity) => {
     setSnackBar((previousState) => {
       return {
@@ -60,10 +62,13 @@ function App() {
           snackBar,
           setSnackBar,
           showSnackBar,
+          editProfilePopUp,
+          setEditProfilePopUp,
         }}
       >
         {/* <Loading /> */}
         <CustomSnackBar />
+        <EditProfilePopUp />
         <Router>
           <Routes>
             <Route

@@ -1,0 +1,14 @@
+#edit_popUp_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40vw;
+  }
+  #content{
+    margin-top: 20px;
+  }
+
+  #title{
+    font-weight: bold;
+  }
