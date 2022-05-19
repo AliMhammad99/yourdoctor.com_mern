@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import CustomSnackBar from "./components/SignUp/CustomSnackBar";
 import AccountDataService from "../src/services/account";
 import FindYourDoctor from "./pages/FindYourDoctor";
+import Calendar from "./pages/calendar";
 import EditProfilePopUp from "./components/EditProfilePopUp";
 
 /*Advanced Concepts to use:
@@ -85,6 +86,11 @@ function App() {
               exact
               path="/findyourdoctor"
               element={<RouteProtected component={FindYourDoctor} />}
+            />
+            <Route
+              exact
+              path="/calendar"
+              element={<RouteProtected component={Calendar} />}
             />
             <Route exact path="*" element={<Navigate to="/" />} />
           </Routes>
