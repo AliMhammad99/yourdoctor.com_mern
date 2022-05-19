@@ -18,6 +18,7 @@ import YourDoctorLogo from "../YourDoctorLogo";
 import AccountDataService from "../../services/account";
 import BasicUserDataService from "../../services/basicUser";
 import GlobalStates from "../../utils/GlobalStates";
+import EditProfileDialog from "../EditProfilePopUp";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
@@ -52,6 +53,11 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const handleEditProfileClick = () => {
+    globalStates.setEditProfilePopUp(true);
+    setAnchorElUser(null);
+  };
+
   const handleLogOut = () => {
     AccountDataService.logOut().then((res) => {
       globalStates.setAuthenticated(res.data.authenticated);
@@ -70,8 +76,7 @@ const ResponsiveAppBar = () => {
   }, []);
 
   const settings = [
-    { name: "Profile", function: handleCloseUserMenu },
-    { name: "Account", function: handleCloseUserMenu },
+    { name: "Profile", function: handleEditProfileClick },
     { name: "Notifications", function: handleCloseUserMenu },
     { name: "Logout", function: handleLogOut },
   ];

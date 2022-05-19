@@ -1,0 +1,80 @@
+.doctor-card {
+  background-color: #fbfbfb;
+  //   overflow: hidden;
+  border: thin solid var(--very-light-gray);
+  box-sizing: border-box;
+  width: 100%;
+  height: max-content;
+  padding: 1em;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  transition: background-color var(--hover-transition-time);
+  > .left-div {
+    display: flex;
+    > .doctor-profile-picture {
+      //   background-color: greenyellow;
+      margin-right: 1em;
+      > img {
+        // background-color: red;
+        width: 10em;
+        height: 10em;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+    }
+    > .doctor-info {
+      //   background-color: aqua;
+      > h2 {
+        // background-color: yellow;
+        font-size: var(--font-size-small);
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.3em;
+        > svg {
+          margin-right: 0.2em;
+        }
+        > span {
+          font-family: our-font-thin;
+        }
+      }
+      > .doctor-name {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+      > .doctor-specialty {
+        > svg {
+          color: var(--light-blue);
+        }
+      }
+      > .doctor-location {
+        > svg {
+          color: red;
+        }
+      }
+      > .doctor-rating {
+        > .css-ryrseu-MuiRating-root {
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+  > .arrow-forward {
+    // background-color: purple;
+    display: flex;
+    align-items: center;
+    > svg {
+      fill: var(--light-gray);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    > .arrow-forward {
+      > svg {
+        fill: var(--light-blue);
+      }
+    }
+  }
+}
