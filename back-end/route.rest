@@ -44,7 +44,7 @@ POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
-    "basic_user_id": "627d1cb75a9e2e04f27519e8",
+    "basic_user_id": "627d1fe65a9e2e04f27519fa",
     "years_of_experience": 5,
     "spoken_languages": [
       "French","English","Arabic"
@@ -56,11 +56,11 @@ Content-Type: application/json
         "is_verified": "true"
     },
     "clinic": {
-      "name": "Super Dentist",
+      "name": "Super Clinic",
       "location": {
            "x": 100, 
            "y": 100, 
-           "region_name": "Dental Land" 
+           "region_name": "Clinic Land" 
         }
     }
 }
