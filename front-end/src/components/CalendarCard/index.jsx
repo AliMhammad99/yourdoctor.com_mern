@@ -1,31 +1,36 @@
 import VerifiedIcon from "@mui/icons-material/Verified";
 import LocationIcon from "@mui/icons-material/LocationOn";
 import ArrowIcon from "@mui/icons-material/ArrowForwardIos";
-import Rating from "@mui/material/Rating";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import EventNoteIcon from "@mui/icons-material/EventNote";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import "./CalendarCard.scss";
 function DoctorCard() {
   return (
-    <section className="doctor-card">
-      <div className="left-div">
-        <div className="doctor-info">
-          <h2 className="doctor-name">Dr. Marwan Mcheik</h2>
-          <h2 className="doctor-specialty">
-            <VerifiedIcon />
-            <span>Cardiologist</span>
-          </h2>
-          <h2 className="doctor-location">
+    <section className="calendar-card">
+      <div className="calendar-left-div">
+        <div className="calendar-info">
+          <h2 className="calendar-name">Dr. Marwan Mcheik-Cardiologist</h2>
+
+          <h2 className="calendar-locatio">
             <LocationIcon />
             <span>Baalbeck, Lebanon</span>
           </h2>
-          <h2 className="doctor-rating">
-            <Rating name="read-only" value={4.3} precision={0.1} readOnly />
-            {/* Stars rating https://mui.com/material-ui/react-rating/ */}
-            <span>4.3/5</span>
+        </div>
+        <div className="calendar-date-time">
+          <h2 className="calendar-name">
+            <EventNoteIcon />
+            <span>Date: 13/05/2022</span>
+          </h2>
+
+          <h2 className="calendar-location">
+            <AccessTimeFilledIcon />
+            <span>Time: 2:15 AM</span>
           </h2>
         </div>
       </div>
-      <div className="arrow-forward">
-        <ArrowIcon />
+      <div className="calendar-arrow-forward">
+        <DeleteOutlineIcon />
       </div>
     </section>
   );
