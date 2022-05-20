@@ -4,8 +4,9 @@ import IconButton from "./IconButton";
 import { ReactComponent as SearchIcon } from "../../assets/icon_search.svg";
 import { ReactComponent as SpecialtyIcon } from "../../assets/icon_specialty.svg";
 import { ReactComponent as DoctorIcon } from "../../assets/icon_doctor.svg";
+import { Link } from "react-router-dom";
 import "./SearchForm.scss";
-function SearchForm({className}) {
+function SearchForm({ className }) {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -21,7 +22,9 @@ function SearchForm({className}) {
         hint={"Doctor Name (optional)"}
         collection="doctor"
       />
-      <IconButton svgIcon={<SearchIcon />} id="search-button" type="submit" />
+      <Link to="/findyourdoctor/6268ef5b632cfdc52242206d">
+        <IconButton svgIcon={<SearchIcon />} id="search-button" type="submit" />
+      </Link>
     </form>
   );
 }

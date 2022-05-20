@@ -150,7 +150,7 @@ GET http://localhost:5000/doctor?years_of_experience=5&clinic.location.x=100
 GET http://localhost:5000/doctor/aggregate/basic_user?doctor_name=Ali&specialty_id=6268ef32632cfdc52242206c
 
 ### Get specialty by name
-GET http://localhost:5000/specialty?specialty_name=den
+GET http://localhost:5000/specialty?specialty_name=
 
 ### Login
 POST http://localhost:5000/account/login
