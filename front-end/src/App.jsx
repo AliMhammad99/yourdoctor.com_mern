@@ -83,9 +83,14 @@ function App() {
             />
             <Route
               exact
-              path="/findyourdoctor"
+              path="/findyourdoctor/:specialty_id"
               element={<RouteProtected component={FindYourDoctor} />}
             />
+            {/* <Route
+              exact
+              path="/findyourdoctor/:specialty_id"
+              element={<FindYourDoctor />}
+            /> */}
             <Route
               exact
               path="/calendar"

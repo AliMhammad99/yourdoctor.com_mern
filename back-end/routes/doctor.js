@@ -84,6 +84,52 @@ router.get("/aggregate/basic_user", async (req, res) => {
   }
 });
 
+//Get doctor card by specialty id
+router.get("/get/doctor_card",async (req, res) => {
+  //0 means get all doctors
+  if(req.query.specialty_id==""){
+    try{
+    const doctors = await Doctor.aggregate([{
+      $lookup:{
+        from:"basic_user",
+        localField: "basic_user_id",
+        foreignField: "_id",
+        as: "basic_user_details",
+      }
+    },{$lookup:{
+      from:"specialty",
+      localField:"specialty_id",
+      foreignField:"_id",
+      as:"specialty",
+    }} ,{ $unwind: "$basic_user_details" },{$unwind:"$specialty"}]);
+    res.json(doctors); 
+    }catch(err){
+      res.status(500).json({message:err.message});
+    }
+  }else{
+    //get doctors having the specialty_id
+    try{
+      const doctors = await Doctor.aggregate([{$match:{specialty_id:mongoose.Types.ObjectId(req.query.specialty_id)}},{
+        $lookup:{
+          from:"basic_user",
+          localField: "basic_user_id",
+          foreignField: "_id",
+          as: "basic_user_details",
+        }
+      },{$lookup:{
+        from:"specialty",
+        localField:"specialty_id",
+        foreignField:"_id",
+        as:"specialty",
+      }} ,{ $unwind: "$basic_user_details" },{$unwind:"$specialty"}]);
+      // .match({specialty_id: mongoose.Types.ObjectId(req.query.specialty_id)});
+    res.json(doctors);
+  }catch(err){
+    res.status(500).json({message:err.message});
+  }}
+
+});
+
 // 4. update one
 // router.patch("/:id", getDoctorById, async (req, res) => {
 //   if (req.body.specialty_name != null) {
