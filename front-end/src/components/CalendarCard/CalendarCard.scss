@@ -1,4 +1,4 @@
-.doctor-card {
+.calendar-card {
   background-color: #fbfbfb;
   //   overflow: hidden;
   border: thin solid var(--very-light-gray);
@@ -11,7 +11,7 @@
   justify-content: space-between;
   margin-bottom: 1em;
   transition: background-color var(--hover-transition-time);
-  > .left-div {
+  > .calendar-left-div {
     display: flex;
     > .doctor-profile-picture {
       //   background-color: greenyellow;
@@ -24,8 +24,8 @@
         border-radius: 20px;
       }
     }
-    > .doctor-info {
-      //   background-color: aqua;
+    > .calendar-info {
+        
       > h2 {
         // background-color: yellow;
         font-size: var(--font-size-small);
@@ -39,28 +39,56 @@
           font-family: our-font-thin;
         }
       }
-      > .doctor-name {
+      > .calendar-name {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
       }
-      > .doctor-specialty {
+      > .calendar-specialty {
         > svg {
           color: var(--light-blue);
         }
       }
-      > .doctor-location {
-        > svg {
-          color: red;
-        }
-      }
-      > .doctor-rating {
+      
+      > .calendar-rating {
         > .css-ryrseu-MuiRating-root {
           font-size: 1.7rem;
         }
       }
     }
+    > .calendar-date-time {
+  
+      margin-left: 13vw;
+   > h2 {
+     // background-color: yellow;
+     font-size: var(--font-size-small);
+     display: flex;
+     align-items: center;
+     margin-bottom: 0.3em;
+     > svg {
+       margin-right: 0.2em;
+     }
+     > span {
+       font-family: our-font-thin;
+     }
+   }
+   > .calendar-name {
+     margin-top: 0.5em;
+     margin-bottom: 0.5em;
+   }
+   > .calendar-specialty {
+     > svg {
+       color: var(--light-blue);
+     }
+   }
+   
+   > .calendar-rating {
+     > .css-ryrseu-MuiRating-root {
+       font-size: 1.7rem;
+     }
+   }
+ }
   }
-  > .arrow-forward {
+  > .calendar-arrow-forward {
     // background-color: purple;
     display: flex;
     align-items: center;
@@ -71,7 +99,7 @@
   &:hover {
     cursor: pointer;
     background-color: #f0f0f0;
-    > .arrow-forward {
+    > .calendar-arrow-forward {
       > svg {
         fill: var(--light-blue);
       }
