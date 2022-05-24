@@ -6,7 +6,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Loading from "./components/Loading";
 import Guest from "./pages/Guest";
 import Home from "./pages/Home";
 import CustomSnackBar from "./components/SignUp/CustomSnackBar";
@@ -84,9 +83,14 @@ function App() {
             />
             <Route
               exact
-              path="/findyourdoctor"
+              path="/findyourdoctor/:specialty_id"
               element={<RouteProtected component={FindYourDoctor} />}
             />
+            {/* <Route
+              exact
+              path="/findyourdoctor/:specialty_id"
+              element={<FindYourDoctor />}
+            /> */}
             <Route
               exact
               path="/calendar"

@@ -23,8 +23,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 const pages = [
-  { name: "Find Your Doctor", url: "/findyourdoctor" },
-  { name: "Chat", url: "/chat" },
+  { name: "Find Your Doctor", url: "/findyourdoctor/all" },
   { name: "Calendar", url: "/calendar" },
   { name: "About", url: "/about" },
   { name: "Contact", url: "/contact" },

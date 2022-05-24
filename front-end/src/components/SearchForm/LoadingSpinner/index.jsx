@@ -1,5 +1,5 @@
 import "./LoadingSpinner.scss";
-const LoadingSpinner = () => {
-  return <div className="loading-spinner"></div>;
+const LoadingSpinner = ({ id }) => {
+  return <div className="loading-spinner" id={id}></div>;
 };
 export default LoadingSpinner;

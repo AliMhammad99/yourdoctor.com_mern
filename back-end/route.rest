@@ -14,12 +14,12 @@ POST http://localhost:5000/basicUser
 Content-Type: application/json
 
 {
-    "first_name": "carlos",
-    "last_name": "gerg",
+    "first_name": "Harry",
+    "last_name": "Lary",
     "gender": "male",
     "date_of_birth": "2011-09-01T00:00:00.000Z",
     "phone_number": "8144 2456",
-    "profile_picture": "user.jpg"
+    "profile_picture": "https://res.cloudinary.com/dvgjsemgk/image/upload/v1652365586/doctors_images/1000_F_143819453_Eai3IbcXhhGGoCWY5lso1ijI9nH387yC_ht33tg.jpg"
 }
 
 ### Update one
@@ -44,23 +44,23 @@ POST http://localhost:5000/doctor
 Content-Type: application/json
 
 {
-    "basic_user_id": "6269063b6fb7b43092238971",
+    "basic_user_id": "627d1fe65a9e2e04f27519fa",
     "years_of_experience": 5,
     "spoken_languages": [
       "French","English","Arabic"
     ],
-    "professional_biography": "I am a Dentist with 5 years of experience",
+    "professional_biography": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "specialty_id": "6268ef32632cfdc52242206c",
     "certificate": { 
         "certificate_image": "certificate.jpg", 
         "is_verified": "true"
     },
     "clinic": {
-      "name": "Super Dentist",
+      "name": "Super Clinic",
       "location": {
            "x": 100, 
            "y": 100, 
-           "region_name": "Dental Land" 
+           "region_name": "Clinic Land" 
         }
     }
 }
@@ -150,7 +150,7 @@ GET http://localhost:5000/doctor?years_of_experience=5&clinic.location.x=100
 GET http://localhost:5000/doctor/aggregate/basic_user?doctor_name=Ali&specialty_id=6268ef32632cfdc52242206c
 
 ### Get specialty by name
-GET http://localhost:5000/specialty?specialty_name=den
+GET http://localhost:5000/specialty?specialty_name=
 
 ### Login
 POST http://localhost:5000/account/login
@@ -163,7 +163,6 @@ Content-Type: application/json
 
 ### 
 GET http://localhost:5000/account/is/logged_in
-
 
 ### Appointment insert
 POST http://localhost:5000/appointment/
@@ -184,3 +183,6 @@ Content-Type: application/json
     "from": "Thu Dec 29 2011 21:15:56 GMT-0600 (CST)",
     "to": "Thu Dec 29 2011 22:15:56 GMT-0600 (CST)"
 }
+
+### Get Doctor Card by specialty id ("" to get all cards)
+GET http://localhost:5000/doctor/get/doctor_card?specialty_id=6268ef32632cfdc52242206c
