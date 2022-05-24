@@ -16,6 +16,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/byBasicUserID/:id", async (req, res) => {
+  try {
+    const doctors = await Doctor.find({
+      basic_user_id: req.params.id,
+    });
+    res.json(doctors);
+  } catch (err) {
+    // status 500 means an error occured on the server
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // 2. Get one by id
 router.get("/:id", getDoctorById, async (req, res) => {
   res.send(res.doctor);

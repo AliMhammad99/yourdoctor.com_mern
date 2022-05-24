@@ -6,6 +6,8 @@ const specialtyRouter = require("./routes/specialty.js");
 const patientRouter = require("./routes/patient");
 const AccountRouter = require("./routes/account");
 const ImageUploadRouter = require("./routes/ImageUploadRouter");
+const AppointmentRouter = require("./routes/appointment");
+const AvailableDateRouter = require("./routes/availableDate");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
@@ -44,6 +46,8 @@ app.use("/doctor", doctorRouter);
 app.use("/specialty", specialtyRouter);
 app.use("/account", AccountRouter);
 app.use("/imageUpload", ImageUploadRouter);
+app.use("/appointment", AppointmentRouter);
+app.use("/availableDate", AvailableDateRouter);
 
 app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 

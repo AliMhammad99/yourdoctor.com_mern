@@ -163,3 +163,24 @@ Content-Type: application/json
 
 ### 
 GET http://localhost:5000/account/is/logged_in
+
+
+### Appointment insert
+POST http://localhost:5000/appointment/
+Content-Type: application/json
+
+{
+    "patient_user_id" : "627d17b5d6da08ecf13519c4",
+    "available_date_id": "627d17b5d6da08ecf1351933"
+}
+
+
+### Available date insert
+POST http://localhost:5000/availableDate/
+Content-Type: application/json
+
+{
+    "doctor_user_id" : "627d1cb75a9e2e04f27519e8",
+    "from": "Thu Dec 29 2011 21:15:56 GMT-0600 (CST)",
+    "to": "Thu Dec 29 2011 22:15:56 GMT-0600 (CST)"
+}
