@@ -14,6 +14,11 @@ class BasicUserDataService {
     //console.log("basic service image insert");
     return http.get("/basicUser/infos/accountId");
   }
+
+  static getBasicUserByID(id) {
+    //console.log("basic service image insert");
+    return http.get(`/basicUser/${id}`);
+  }
 }
 
 export default BasicUserDataService;
