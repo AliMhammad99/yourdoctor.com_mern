@@ -1,12 +1,13 @@
 import React from "react";
 import { Suspense } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import Chip from "@mui/material/Chip";
 import LoadingSpinner from "../LoadingSpinner";
 import ClearButton from "../ClearButton";
 import "./DropDownBox.scss";
 import SpecialtyDataService from "../../../services/specialty";
 import DoctorDataService from "../../../services/doctor";
+import SearchFormContext from "../SearchFormContext";
 
 //DropDownMenu Lazy import (will be imported when needed for rendering)
 //The setTimeout is only for testing purpose to simulate slow connection
@@ -35,6 +36,9 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
 
   //Refs
   const dropDownBoxRef = useRef();
+
+  //Context
+  const searchFormContext = useContext(SearchFormContext);
 
   //Effects
   useEffect(() => {
@@ -79,10 +83,13 @@ function DropDownBox({ svgIcon, hint, collection, id }) {
     // const textInput =
     dropDownBoxRef.current.querySelector(".drop-down-input")?.blur();
   };
+
+  //Clear Button
   const clearSearchKeyword = () => {
     setSearchKeyword("");
     setChipItem({});
     focusDropDownInput();
+    searchFormContext.setSpecialtyId("all");
   };
   const fetchListItems = () => {
     setIsLoading(true);

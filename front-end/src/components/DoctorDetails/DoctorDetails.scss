@@ -1,18 +1,23 @@
-.doctor-card {
-  background-color: #fbfbfb;
-  //   overflow: hidden;
-  border: thin solid var(--very-light-gray);
+.doctor-details {
+  background-color: #f0f0f0;
   box-sizing: border-box;
-  width: 100%;
-  height: max-content;
-  padding: 1em;
-  border-radius: 30px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1em;
-  transition: background-color var(--hover-transition-time);
-  > .left-div {
+  border: thin solid var(--very-light-gray);
+  box-shadow: 2px 2px 7px 1px var(--light-gray);
+  position: fixed;
+  top: 2vh;
+  right: 2vh;
+  width: 45vw;
+  height: 96vh;
+  display: none;
+  border-radius: var(--border-radius-round-corners);
+  z-index: 100;
+  padding: 1.5em;
+  &.open {
+    display: block;
+  }
+  > .top-div {
     display: flex;
+    // background-color: green;
     > .doctor-profile-picture {
       margin-right: 1em;
       > img {
@@ -58,29 +63,13 @@
       }
     }
   }
-  > .arrow-forward {
-    // background-color: purple;
-    display: flex;
-    align-items: center;
-    > svg {
-      fill: var(--light-gray);
-    }
-  }
-  &:hover {
+  > .close-btn {
+    position: absolute;
+    top: 1%;
+    right: 1%;
     cursor: pointer;
-    background-color: #f0f0f0;
-    > .arrow-forward {
-      > svg {
-        fill: var(--light-blue);
-      }
-    }
-  }
-  &.selected {
-    background-color: #e0e0e0;
-    > .arrow-forward {
-      > svg {
-        fill: var(--light-blue);
-      }
+    &:hover > svg {
+      fill: var(--light-blue);
     }
   }
 }

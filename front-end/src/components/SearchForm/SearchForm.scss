@@ -12,6 +12,9 @@
       top: 104%;
     }
   }
+  .search-button-link {
+    width: 100%;
+  }
 }
 #search-button {
   width: 100%;
@@ -52,12 +55,16 @@
     .drop-down-box:nth-child(2) {
       border-radius: 0;
     }
+    .search-button-link {
+      width: 10%;
+      height: 100%;
+    }
   }
   #search-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     height: 100%;
-    width: 10%;
+    width: 100%;
     margin-top: 0;
     svg {
       width: 45%;

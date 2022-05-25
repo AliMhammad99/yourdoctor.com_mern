@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./DropDownMenu.scss";
+import SearchFormContext from "../SearchFormContext";
 
 function DropDownMenu({ menuItems, menuTitle, setChipItem }) {
+  const searchFormContext = useContext(SearchFormContext);
   return (
     <ul className="drop-down-menu">
       <h2>{menuItems.length === 0 ? "No Results" : menuTitle}</h2>
@@ -12,6 +14,7 @@ function DropDownMenu({ menuItems, menuTitle, setChipItem }) {
             key={index}
             onClick={() => {
               setChipItem(menuItem);
+              searchFormContext.setSpecialtyId(menuItem.item_id);
             }}
           >
             {menuItem.item_name}
