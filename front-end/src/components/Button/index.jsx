@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import "./Button.scss";
-function Button(props) {
-  return <button className="our-button">{props.buttonName}</button>;
+function Button({ buttonName }) {
+  return <button className="our-button">{buttonName}</button>;
 }
 export default memo(Button);

@@ -12,12 +12,14 @@
   border-radius: var(--border-radius-round-corners);
   z-index: 100;
   padding: 1.5em;
+  text-align: center;
+
   &.open {
     display: block;
   }
   > .top-div {
     display: flex;
-    // background-color: green;
+    margin-bottom: 1em;
     > .doctor-profile-picture {
       margin-right: 1em;
       > img {
@@ -63,6 +65,18 @@
       }
     }
   }
+  > h4 {
+    // font-size: var(--font-size-small);
+    margin-bottom: 0.5em;
+  }
+  > .available-dates {
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    row-gap: 1em;
+    margin-bottom: 1em;
+  }
   > .close-btn {
     position: absolute;
     top: 1%;
@@ -70,6 +84,16 @@
     cursor: pointer;
     &:hover > svg {
       fill: var(--light-blue);
+    }
+  }
+  .loading-spinner {
+    left: 50%;
+  }
+  .doctor-bio {
+    margin-top: 1.5em;
+    > p {
+      text-align: justify;
+      margin-top: 0.5em;
     }
   }
 }
