@@ -15,6 +15,9 @@ class DoctorDataService {
   static getDoctorCardBySpecialtyId(specialtyId) {
     return http.get(`/doctor/get/doctor_card?specialty_id=${specialtyId}`);
   }
+  static getDoctorDetailsByBasicUserId(basicUserId) {
+    return http.get(`/doctor/get/doctor_details/${basicUserId}`);
+  }
 }
 
 export default DoctorDataService;

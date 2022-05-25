@@ -161,14 +161,14 @@ router.get("/get/doctor_card", async (req, res) => {
   }
 });
 
-//Get Doctor Details by doctor_id
+//Get Doctor Details by basic_user_id
 router.get("/get/doctor_details/:id", async (req, res) => {
   //get doctors having the specialty_id
   try {
-    const doctors = await Doctor.aggregate([
+    const doctorDetails = await Doctor.aggregate([
       {
         $match: {
-          specialty_id: mongoose.Types.ObjectId(req.query.specialty_id),
+          basic_user_id: mongoose.Types.ObjectId(req.params.id),
         },
       },
       {
@@ -187,11 +187,19 @@ router.get("/get/doctor_details/:id", async (req, res) => {
           as: "specialty",
         },
       },
+      {
+        $lookup: {
+          from: "available_date",
+          localField: "basic_user_id",
+          foreignField: "doctor_user_id",
+          as: "available_dates",
+        },
+      },
       { $unwind: "$basic_user_details" },
       { $unwind: "$specialty" },
     ]);
     // .match({specialty_id: mongoose.Types.ObjectId(req.query.specialty_id)});
-    res.json(doctors);
+    res.json(doctorDetails);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
