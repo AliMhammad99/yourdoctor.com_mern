@@ -8,10 +8,12 @@ import "./DoctorDetails.scss";
 import Button from "../Button";
 import AvailableDate from "./AvailableDate";
 import DoctorDataService from "../../services/doctor";
+import AppointmentDataService from "../../services/appointment";
+import AvailableDateDataService from "../../services/availableDate";
 import moment from "moment";
 /*
-  1. Front-end: available dates and bio
-  2. fetch from db
+  1. Front-end: available dates and bio Done
+  2. fetch from db Done
   3. booking system
   1.doctorId is available here
  */
@@ -24,6 +26,7 @@ function DoctorDetails({
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [doctorDetails, setDoctorDetails] = useState({});
+  const [selectedDateId, setSelectedDateId] = useState("");
   useEffect(() => {
     if (selectedDoctorId != "") {
       setIsLoading(true);
@@ -38,6 +41,25 @@ function DoctorDetails({
         });
     }
   }, [selectedDoctorId]);
+
+  const bookSelectedAppointment = () => {
+    // console.log(selectedDateId);
+    AppointmentDataService.bookAppointmentByAvailableDateId({
+      available_date: selectedDateId,
+    })
+      .then((res0) => {
+        AvailableDateDataService.bookAvailableDate(selectedDateId)
+          .then((res1) => {
+            console.log(res1.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <section className={`doctor-details ${open ? "open" : ""}`}>
@@ -80,18 +102,30 @@ function DoctorDetails({
           </div>
           <h4>Available Dates:</h4>
           <div className="available-dates">
-            {doctorDetails.available_dates.map((availableDate, index) => {
-              return (
-                <AvailableDate
-                  key={index}
-                  date={moment(availableDate.from).format("LL")}
-                  timeFrom={moment(availableDate.from).format("LT")}
-                  timeTo={moment(availableDate.to).format("LT")}
-                />
-              );
-            })}
+            {doctorDetails.available_dates.length === 0 ? (
+              <p>No Available dates</p>
+            ) : (
+              doctorDetails.available_dates.map((availableDate, index) => {
+                return (
+                  <AvailableDate
+                    key={index}
+                    date={moment(availableDate.from).format("LL")}
+                    timeFrom={moment(availableDate.from).format("LT")}
+                    timeTo={moment(availableDate.to).format("LT")}
+                    selected={selectedDateId === availableDate._id}
+                    onClick={() => {
+                      setSelectedDateId(availableDate._id);
+                    }}
+                  />
+                );
+              })
+            )}
           </div>
-          <Button buttonName="Book Appointment" />
+          <Button
+            buttonName="Book Appointment"
+            disabled={selectedDateId === ""}
+            onClick={bookSelectedAppointment}
+          />
           <div className="doctor-bio">
             <h4>Experience</h4>
             <p>{doctorDetails.professional_biography}</p>

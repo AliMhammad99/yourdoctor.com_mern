@@ -13,6 +13,9 @@ class AvailableDateDataService {
   static getAvailableDateByID(available_date_id) {
     return http.get(`/availableDate/getSpecificDate/${available_date_id}`);
   }
+  static bookAvailableDate(available_date_id) {
+    return http.patch(`/availableDate/set_booked/${available_date_id}`);
+  }
 }
 
 export default AvailableDateDataService;

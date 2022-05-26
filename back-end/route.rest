@@ -189,3 +189,11 @@ GET http://localhost:5000/doctor/get/doctor_card?specialty_id=6268ef32632cfdc522
 
 ### Get Doctor Details by basic_user_id
 GET http://localhost:5000/doctor/get/doctor_details/627d1cb75a9e2e04f27519e8
+
+### Available date insert
+POST http://localhost:5000/appointment/book/appointment
+Content-Type: application/json
+
+{
+    "available_date_id" : "628eb4b01c031a2796771397"
+}

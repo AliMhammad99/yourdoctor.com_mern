@@ -193,6 +193,13 @@ router.get("/get/doctor_details/:id", async (req, res) => {
           localField: "basic_user_id",
           foreignField: "doctor_user_id",
           as: "available_dates",
+          pipeline: [
+            {
+              $match: {
+                is_booked: false,
+              },
+            },
+          ],
         },
       },
       { $unwind: "$basic_user_details" },

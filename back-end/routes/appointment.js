@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Appointment = require("../models/appointment.js");
-
+const BasicUser = require("../models/basic_user");
+const basicUser = require("./basicUser");
 // Routes for CRUD Operations (CRUD: Create, Read, Update, Delete)
 
 router.get("/patientID/:id", async (req, res) => {
@@ -99,6 +100,27 @@ router.delete("/:id", getAppointmentById, async (req, res) => {
   }
 });
 
+//Book appointment by available date for session basic_user_id
+router.post("/book/appointment/", getBasicUserBySessionId, async (req, res) => {
+  // console.log(req.body);
+  // console.log(res.basicUser._id);
+  const appointment = new Appointment({
+    patient_user_id: res.basicUser._id,
+    available_date_id: req.body.available_date_id,
+  });
+  try {
+    const newAppointment = await appointment.save();
+    //status 201 means everything was successful
+    /*default for successful is 200,
+        but 201 is used for successful create operations specifically
+        */
+    res.status(201).json(newAppointment);
+  } catch (err) {
+    //status 400 means there is a problem in the user input
+    res.status(400).json({ message: err.message });
+  }
+});
+
 async function getBasicUserBySessionId(req, res, next) {
   /* This function is used to check if a basicUser exists with the given id*/
   /* This function is needed a lot in our operations above,
@@ -146,6 +168,32 @@ async function getAppointmentById(req, res, next) {
   }
   // If this statement is reached => it exists, set it to result
   res.appointment = appointment;
+  /* Move to the next function of middleware 
+  (the function next to the call of this function inside parameters of CRUD)
+  */
+  next();
+}
+
+async function getBasicUserBySessionId(req, res, next) {
+  /* This function is used to check if a basicUser exists with the given id*/
+  /* This function is needed a lot in our operations above,
+     that's why we created this function (reduce code redundancy)*/
+  /* This function can be called on all operations that uses an id as req.params*/
+  let basicUser;
+  try {
+    basicUser = await BasicUser.findOne({ accountId: req.session.accountId });
+    // If does not exist we return error message
+    if (basicUser == null) {
+      /*status 404 means we are not able to find an object 
+        with the passed id in the database*/
+      return res.status(404).json({ message: "Cannot find specialty" });
+    }
+  } catch (err) {
+    // Server error
+    return res.status(500).json({ message: err.message });
+  }
+  // If this statement is reached => it exists, set it to result
+  res.basicUser = basicUser;
   /* Move to the next function of middleware 
   (the function next to the call of this function inside parameters of CRUD)
   */
