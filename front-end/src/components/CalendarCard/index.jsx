@@ -22,7 +22,8 @@ class Inf {
     month,
     hours,
     minutes,
-    year
+    year,
+    appointmentid
   ) {
     this.fname = fname;
     this.lname = lname;
@@ -33,11 +34,12 @@ class Inf {
     this.hours = hours;
     this.minutes = minutes;
     this.year = year;
+    this.appointmentid = appointmentid;
   }
 }
 
 function CalendarCard() {
-  const [info, setInfo] = useState([]);
+  const [info, setInfo] = useState([{}]);
   // const [flag, setFlag] = useState();
 
   let arr = [];
@@ -79,7 +81,7 @@ function CalendarCard() {
                   resp.data.doctor_user_id
                 ).then((res1) => {
                   //  console.log(res1.data[0].clinic.location.region_name);
-                  console.log(res1.data.length);
+                  //  console.log(res1.data.length);
 
                   SpecialityDataService.getSpecialtyByID(
                     res1.data[0].specialty_id
@@ -87,7 +89,7 @@ function CalendarCard() {
                     //   console.log(spec_res.data.specialty_name);
 
                     // console.log(spec_res.data);
-
+                    // console.log(i);
                     arr.push(
                       new Inf(
                         r.data.first_name,
@@ -98,13 +100,16 @@ function CalendarCard() {
                         date.getMonth(),
                         date.getHours(),
                         date.getMinutes(),
-                        date.getFullYear()
+                        date.getFullYear(),
+                        response.data._id, //patient id
+                        res.data[i].available_date_id
                       )
                     );
-
+                    //   console.log(res.data[i].available_date_id);
                     if (i === res.data.length - 1) {
-                      console.log(arr);
+                      //   console.log(arr);
                       setInfo(arr);
+                      console.log(arr.length);
                       setLoading(false);
                     }
                   });
@@ -126,12 +131,21 @@ function CalendarCard() {
   //console.log(arr.length);
 
   //console.log(Object.keys(infos).length);
+
+  function clickListener(response) {
+    console.log(response.patient_id);
+  }
+
   return (
     <div>
       {isLoading === false ? (
         info.map((response, index) => {
           return (
-            <section key={index} className="calendar-card">
+            <section
+              key={index}
+              className="calendar-card"
+              onClick={() => clickListener(response)}
+            >
               <div className="calendar-left-div">
                 <div className="calendar-info">
                   <h2 className="calendar-name">
