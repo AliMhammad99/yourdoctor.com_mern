@@ -29,7 +29,7 @@ router.get("/:id", getAppointmentById, async (req, res) => {
   res.send(res.appointment);
 });
 
-// 3. Create one BasicUser
+// 3. Create one Appointment
 router.post("/", async (req, res) => {
   const appointment = new Appointment({
     patient_user_id: req.body.patient_user_id,

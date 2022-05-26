@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import LocationIcon from "@mui/icons-material/LocationOn";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,6 +11,7 @@ import DoctorDataService from "../../services/doctor";
 import AppointmentDataService from "../../services/appointment";
 import AvailableDateDataService from "../../services/availableDate";
 import moment from "moment";
+import GlobalStates from "../../utils/GlobalStates";
 /*
   1. Front-end: available dates and bio Done
   2. fetch from db Done
@@ -27,6 +28,8 @@ function DoctorDetails({
   const [isLoading, setIsLoading] = useState(true);
   const [doctorDetails, setDoctorDetails] = useState({});
   const [selectedDateId, setSelectedDateId] = useState("");
+  // const [selectedDateIndex, setSelectedDateIndex] = useState();
+  const globalStates = useContext(GlobalStates);
   useEffect(() => {
     if (selectedDoctorId != "") {
       setIsLoading(true);
@@ -45,12 +48,17 @@ function DoctorDetails({
   const bookSelectedAppointment = () => {
     // console.log(selectedDateId);
     AppointmentDataService.bookAppointmentByAvailableDateId({
-      available_date: selectedDateId,
+      available_date_id: selectedDateId,
     })
       .then((res0) => {
         AvailableDateDataService.bookAvailableDate(selectedDateId)
           .then((res1) => {
             console.log(res1.data);
+            setSelectedDateId("");
+            globalStates.showSnackBar(
+              "Appointment Booked Successfully!",
+              "success"
+            );
           })
           .catch((error) => {
             console.log(error);

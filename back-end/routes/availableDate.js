@@ -6,6 +6,7 @@ const AvailableDate = require("../models/available_date");
 
 router.get("/getSpecificDate/:id", async (req, res) => {
   let availableDate;
+  // console.log(req.params.id);
   try {
     availableDate = await AvailableDate.findById(req.params.id);
     // If does not exist we return error message
@@ -47,21 +48,14 @@ router.post("/", async (req, res) => {
 });
 
 //Update available date is_booked to true
-router.patch("/set_booked/:id", async (req, res) => {
-  console.log(req.params.id);
-  // if (req.body.profile_picture != null) {
-  //   res.basicUser.profile_picture = req.body.profile_picture;
-  //   console.log(res.basicUser.profile_picture);
-  //   console.log(req.body.profile_picture);
-  //   console.log(req.session.accountId);
-  // }
-  // // Same if block for other fields if there is more than one field
-  // try {
-  //   const basicUser = await res.basicUser.save();
-  //   res.json(basicUser);
-  // } catch (err) {
-  //   res.status(400).json({ message: err.message });
-  // }
+router.patch("/set_booked/:id", getAvailableDateById, async (req, res) => {
+  try {
+    res.availableDate.is_booked = true;
+    const availableDate = await res.availableDate.save();
+    res.json(availableDate);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
 // 4. update one BasicUser

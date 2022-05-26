@@ -37,7 +37,7 @@ class Inf {
 }
 
 function CalendarCard() {
-  const [info, setInfo] = useState([]);
+  const [info, setInfo] = useState([{}]);
   // const [flag, setFlag] = useState();
 
   let arr = [];
@@ -101,10 +101,10 @@ function CalendarCard() {
                         date.getFullYear()
                       )
                     );
-
+                    setInfo(arr);
                     if (i === res.data.length - 1) {
                       console.log(arr);
-                      setInfo(arr);
+
                       setLoading(false);
                     }
                   });
