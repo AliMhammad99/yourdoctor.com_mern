@@ -14,9 +14,9 @@ class AppointmentDataService {
     return http.get(`/appointment/patientID/${patient_user_id}`);
   }
 
-  static deleteAppointment(patient_user_id) {
-    return http.delete(`/appointment/patientID/${patient_user_id}`);
-  }
+  // static deleteAppointment(patient_user_id) {
+  //   return http.delete(`/appointment/patientID/${patient_user_id}`);
+  // }
 }
 
 export default AppointmentDataService;
