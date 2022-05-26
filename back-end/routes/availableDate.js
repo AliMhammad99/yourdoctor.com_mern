@@ -6,6 +6,7 @@ const AvailableDate = require("../models/available_date");
 
 router.get("/getSpecificDate/:id", async (req, res) => {
   let availableDate;
+  // console.log(req.params.id);
   try {
     availableDate = await AvailableDate.findById(req.params.id);
     // If does not exist we return error message
@@ -45,6 +46,32 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+//Update available date is_booked to true
+router.patch("/set_booked_true/:id", getAvailableDateById, async (req, res) => {
+  try {
+    res.availableDate.is_booked = true;
+    const availableDate = await res.availableDate.save();
+    res.json(availableDate);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+//Update available date is_booked to false
+router.patch(
+  "/set_booked_false/:id",
+  getAvailableDateById,
+  async (req, res) => {
+    try {
+      res.availableDate.is_booked = false;
+      const availableDate = await res.availableDate.save();
+      res.json(availableDate);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
+);
 
 // 4. update one BasicUser
 // router.patch("/:id", getAppointmentById, async (req, res) => {

@@ -105,11 +105,10 @@ function CalendarCard() {
                         res.data[i].available_date_id
                       )
                     );
-                    //   console.log(res.data[i].available_date_id);
+
+                    setInfo(arr);
                     if (i === res.data.length - 1) {
-                      //   console.log(arr);
-                      setInfo(arr);
-                      console.log(arr.length);
+                      console.log(arr);
                       setLoading(false);
                     }
                   });

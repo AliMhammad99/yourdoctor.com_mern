@@ -10,6 +10,7 @@ const modelInfo = new Schema(
     doctor_user_id: { type: Schema.Types.ObjectId, ref: "basic_user" },
     from: Date,
     to: Date,
+    is_booked: { type: Boolean, default: false },
   },
   { collection: "available_date" }
 );

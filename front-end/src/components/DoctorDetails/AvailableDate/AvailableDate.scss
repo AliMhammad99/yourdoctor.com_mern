@@ -1,0 +1,21 @@
+.available-date-time {
+  background-color: white;
+  width: max-content;
+  padding: 0.5em;
+  border-radius: var(--border-radius-round-corners);
+  border: thin solid var(--very-light-gray);
+  cursor: pointer;
+  &:hover {
+    outline: thin solid var(--light-blue);
+  }
+  &.selected {
+    outline: medium solid var(--light-blue);
+  }
+  > .available-date {
+    // background-color: yellow;
+  }
+  > .available-time {
+    // background-color: purple;
+    text-align: center;
+  }
+}

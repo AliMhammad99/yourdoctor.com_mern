@@ -10,9 +10,20 @@ function DoctorCard({
   specialty,
   location,
   rating,
+  onClick,
+  isSelected,
 }) {
+  // const [isSelected, setIsSelected] = useState(false);
+
+  // const handleClick = () => {
+  //   setIsSelected(true);
+  //   onClick();
+  // };
   return (
-    <section className="doctor-card">
+    <section
+      className={`doctor-card ${isSelected ? "selected" : ""}`}
+      onClick={onClick}
+    >
       <div className="left-div">
         <picture className="doctor-profile-picture">
           <img src={profilePicture} alt="Doctor's profile pictue" />

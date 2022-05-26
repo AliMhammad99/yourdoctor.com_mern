@@ -11,4 +11,11 @@
   &:hover {
     background-color: var(--dark-blue);
   }
+  &.disabled {
+    opacity: 0.5;
+    &:hover {
+      cursor: default;
+      background-color: var(--light-blue);
+    }
+  }
 }

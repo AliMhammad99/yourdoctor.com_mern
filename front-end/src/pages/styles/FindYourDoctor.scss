@@ -1,5 +1,12 @@
 .main-section {
-  min-height: 40vh;
+  // min-height: 40vh;
+  width: 100%;
+  // display: flex;
+  .doctor-cards-section {
+    &.doctor-details-open {
+      width: 37vw;
+    }
+  }
 }
 #find-your-doctor-loading-spinner {
   left: 50%;
