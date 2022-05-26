@@ -9,7 +9,8 @@ import BasicUserDataService from "../../services/basicUser";
 import AvailableDateDataService from "../../services/availableDate";
 import DoctorDataService from "../../services/doctor";
 import SpecialityDataService from "../../services/specialty";
-import { useState, useEffect } from "react";
+import GlobalStates from "../../utils/GlobalStates";
+import { useState, useEffect, useContext } from "react";
 import "./CalendarCard.scss";
 
 class Inf {
@@ -23,7 +24,8 @@ class Inf {
     hours,
     minutes,
     year,
-    appointmentid
+    appointmentid,
+    availableDateID
   ) {
     this.fname = fname;
     this.lname = lname;
@@ -35,6 +37,7 @@ class Inf {
     this.minutes = minutes;
     this.year = year;
     this.appointmentid = appointmentid;
+    this.availableDateID = availableDateID;
   }
 }
 
@@ -46,6 +49,8 @@ function CalendarCard() {
   // var date;
 
   const [isLoading, setLoading] = useState(true);
+
+  const globalStates = useContext(GlobalStates);
 
   useEffect(() => {
     BasicUserDataService.getBasicUser().then((response) => {
@@ -101,7 +106,7 @@ function CalendarCard() {
                         date.getHours(),
                         date.getMinutes(),
                         date.getFullYear(),
-                        response.data._id, //patient id
+                        res.data[i]._id,
                         res.data[i].available_date_id
                       )
                     );
@@ -120,6 +125,12 @@ function CalendarCard() {
       );
     });
   }, []);
+  const deleteOneInfo = (appointmentid) => {
+    const newInfo = info.filter(
+      (element) => element.appointmentid === appointmentid
+    );
+    setInfo(newInfo);
+  };
 
   // async function r() {
   //   await setInfo("r.data.first_name");
@@ -132,7 +143,24 @@ function CalendarCard() {
   //console.log(Object.keys(infos).length);
 
   function clickListener(response) {
-    console.log(response.patient_id);
+    // console.log(response.fname);
+    // console.log(response.appointmentid);
+    // console.log(response.availableDateID);
+    AppointmentDataService.deleteAppointmentByID(response.appointmentid).then(
+      (res) => {
+        AvailableDateDataService.unBookAvailableDate(
+          response.availableDateID
+        ).then((rr) => {
+          // console.log(rr);
+          // console.log(res);
+          deleteOneInfo(res.appointment_id);
+          globalStates.showSnackBar(
+            "Appointment Cancelled Successfullty!",
+            "success"
+          );
+        });
+      }
+    );
   }
 
   return (

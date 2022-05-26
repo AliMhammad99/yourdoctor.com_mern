@@ -16,6 +16,9 @@ class AvailableDateDataService {
   static bookAvailableDate(available_date_id) {
     return http.patch(`/availableDate/set_booked_true/${available_date_id}`);
   }
+  static unBookAvailableDate(available_date_id) {
+    return http.patch(`/availableDate/set_booked_false/${available_date_id}`);
+  }
 }
 
 export default AvailableDateDataService;

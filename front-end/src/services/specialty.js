@@ -11,7 +11,7 @@ class SpecialtyDataService {
   static getSpecialtyByID(id) {
     return http.get(`/specialty/${id}`);
   }
-  
+
   static getSpecialtyById(specialtyId) {
     return http.get(`/specialty/${specialtyId}`);
   }

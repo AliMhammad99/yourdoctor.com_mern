@@ -55,6 +55,8 @@ function DoctorDetails({
           .then((res1) => {
             console.log(res1.data);
             setSelectedDateId("");
+            console.log(res0);
+            // deleteOneAvailableDate(res0.data.available_date_id);
             globalStates.showSnackBar(
               "Appointment Booked Successfully!",
               "success"
@@ -68,7 +70,13 @@ function DoctorDetails({
         console.log(error);
       });
   };
-
+  // const deleteOneAvailableDate = (available_date_id) => {
+  //   console.log(doctorDetails.available_dates);
+  //   // const newDoctorDetails = doctorDetails.available_dates.filter(
+  //   //   (element) => element._id === available_date_id
+  //   // );
+  //   // setDoctorDetails(newDoctorDetails);
+  // };
   return (
     <section className={`doctor-details ${open ? "open" : ""}`}>
       {isLoading ? (
