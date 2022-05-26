@@ -10,6 +10,10 @@ class DoctorDataService {
 
   static getDoctorByBasicUserID(id) {
     return http.get(`/doctor/byBasicUserID/${id}`);
+
+  static getDoctorCardBySpecialtyId(specialty_id){
+    return http.get(`/doctor/get/doctor_card?specialty_id=${specialty_id}`);
+
   }
 }
 
